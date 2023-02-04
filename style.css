@@ -1,0 +1,101 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Allerta&family=Changa+One&display=swap");
+
+* {
+    font-family: "Allerta", sans-serif;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: "Changa One", cursive;
+    font-weight: normal;
+    color: #FFFECB;
+    text-shadow: 1px 1px 2px #000000;
+}
+h2 {
+    font-family: "Changa One", cursive;
+    font-weight: normal;
+    color: #f9ecec;
+}
+
+.linkColor {
+    color: #BBB8B2;
+    text-shadow: 1px 1px 2px #000000;
+}
+
+a.linkColor:hover {
+    color: #E74C3C;
+}
+
+.centerText {
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    flex-grow: 1;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    --bs-body-bg: var(--bs-pink-100);
+}
+
+html {
+    background-color: lightcoral;
+}
+
+.container {
+    width: 100%;
+}
+
+#Wrapper {
+    padding-top: 2rem;
+}
+/* Banner*/
+#banner {
+    background-color: gray;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #333333;
+    padding: 1rem 1rem 0rem 1rem;
+    margin-bottom: 0.5rem;
+}
+
+    #banner nav {
+        background-color: #7D151A;
+        border-radius: 10px;
+        padding: 0.2rem 0;
+        overflow: hidden;
+    }
+
+        #banner nav ul {
+            text-align: center;
+        }
+
+        #banner nav li {
+            display: inline;
+        }
+
+        #banner nav a {
+            color: #DCDCDC;
+            padding: 1.0rem 2.0rem;
+        }
+
+            #banner nav a:hover {
+                background-color: #1A4C9A;
+            }
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background: #BBB8B2;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    z-index: 100;
+}
+#Wrapper img{
+/*    width: 520px;
+    height: 480px;*/
+}
