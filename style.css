@@ -1,12 +1,13 @@
 /*@import url("https://fonts.googleapis.com/css2?family=Allerta&family=Changa+One&display=swap");*/
 
 * {
-    font-family: "Allerta", sans-serif;
-   /* box-sizing: border-box;*/
+    font-family: "Constantia", sans-serif;
+    /* box-sizing: border-box;*/
 }
 /** Grid system - https://www.w3schools.com/css/css_rwd_grid.asp **/
 * {
     box-sizing: border-box;
+    
 }
 
 /* For mobile phones: */
@@ -100,13 +101,14 @@ img {
 }
 
 .heading {
-    letter-spacing: 10px;
+   /* letter-spacing: 6px;*/
     text-align: center;
-    font-size: 4vmin;
-    /* border: 3px solid #3D5A80; */
-    padding: 10px;
+    font-size: 35px;
+   /* border: 3px solid #3D5A80; */
+    padding: 5px;
     color: white;
     text-shadow: 2px 2px 5px #cb0b0b;
+   /* font-family: "Segoe Script", monospace;*/
 }
 
 .parallax {
@@ -119,6 +121,7 @@ img {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
 .parallax2 {
@@ -156,8 +159,8 @@ img {
     font-family: 'Montserrat';
     line-height: 25px;
     text-align: center;
-    border-left: 3px solid #3D5A80;
-    border-right: 3px solid #803d3d;
+    /*border-left: 3px solid #3D5A80;*/
+    /*border-right: 3px solid rgb(0 0 0 / 0%);*/
 }
 
 .contact-info {
@@ -187,17 +190,24 @@ img {
     position: sticky;
     top: 0;
     z-index: 1;
+
 }
 
 .hr {
     border: 2px solid #110520;
+    
 }
 
 .hr2 {
     border: 30px solid #110520;
 }
 
+.h3 {
+    border: 1px solid #110520; 
+}
+
 body {
+    border-top: unset !important;
     background-color: #1f2531;
 }
 
@@ -227,3 +237,39 @@ a:active {
 .iconImage{
     height: 70px;
     width: 70px;
+}
+.change {
+    display: block;
+    width: 100%;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    clear: both;
+    font-weight: 400;
+    color: var(--bs-dropdown-link-color);
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #9e1a1ae8;
+    border: 0;
+    border-radius: var(--bs-dropdown-item-border-radius,0);
+}
+.dropdown-menu {
+    --bs-dropdown-bg: #700707 !important; 
+}
+.nav-link:focus, .nav-link:hover {
+    color: rgb(188 12 12 / 80%) !important;
+}
+.dropdown-toggle{
+    text-align: center !important;
+}
+
+.navbar {
+    font-size: 20px !important;
+    border: 2px solid black !important;
+    background-color: #700707 !important;
+    padding: 10px !important;
+    justify-content: center !important;
+   /* display: unset !important;*/
+}
+.narbar-fluid {
+    background-color:#cb0b0b;
+}
