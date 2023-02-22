@@ -96,7 +96,7 @@ img {
 #name {
     font-size: 25px;
     padding: 5px;
-    text-decoration: none;
+   /* text-decoration: underline;*/
     text-shadow: 0px 0px 3px #cb0b0b;
 }
 
@@ -152,9 +152,9 @@ img {
     background-color: #700707;
     padding: 10px;
 }
-.sections a{
-    text-decoration: none;
-}
+    .sections a {
+        text-decoration: none;
+    }
 
 .container-fluid {
     background-color: #110520;
@@ -261,7 +261,7 @@ a:active {
 .nav-link:focus, .nav-link:hover {
     color: rgb(188 12 12 / 80%) !important;
 }
-.dropdown-toggle{
+.dropdown-toggle {
     text-align: center !important;
     text-decoration: none;
 }
