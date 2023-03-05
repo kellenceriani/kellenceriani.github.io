@@ -215,10 +215,12 @@ body {
     font-size: 20px !important;
 }
 
+.dropdown-toggle {
+        color: #E0FBFC !important;
+
+}
 a:link {
-/*    color: #E0FBFC;
-*/
-/* color: steelblue; */
+color: steelblue;
 }
 
 a:visited {
