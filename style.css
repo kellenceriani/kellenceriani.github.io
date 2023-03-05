@@ -103,12 +103,12 @@ img {
 .heading {
    /* letter-spacing: 6px;*/
     text-align: center;
-    font-size: 35px;
+    font-size: 45px;
    /* border: 3px solid #3D5A80; */
     padding: 5px;
     color: white;
     text-shadow: 2px 2px 5px #cb0b0b;
-   /* font-family: "Segoe Script", monospace;*/
+    font-family: 'Comic Sans MS';
 }
 
 .parallax {
@@ -212,10 +212,13 @@ img {
 body {
     border-top: unset !important;
     background-color: #1f2531;
+    font-size: 20px !important;
 }
 
 a:link {
-    color: #E0FBFC;
+/*    color: #E0FBFC;
+*/
+color: steelblue;
 }
 
 a:visited {
