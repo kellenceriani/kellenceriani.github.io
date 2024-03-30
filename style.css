@@ -69,8 +69,16 @@
 [class*="col-"] {
     float: left;
 }
-
+.rowBorder{
+    border: 1px solid white; /* Add white outline border */
+    background-color: #000000;
+}
 .row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.rowBorder::after {
     content: "";
     clear: both;
     display: table;
@@ -113,15 +121,14 @@ img {
 
 .parallax {
     /* The image used */
-    background-image: url('Images/slope.png');
+    background-image: url('Images/wake_up.gif');
     /* Set a specific height */
     min-height: 200px;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
+     background-repeat: no-repeat; 
+     background-size: cover; 
+     image-rendering: crisp-edges; /* Remove yellow dots */
 }
 
 .parallax2 {
@@ -157,13 +164,11 @@ img {
     }
 
 .container-fluid {
-    background-color: #110520;
+    background-image: linear-gradient(to bottom, #110520, black);
     color: #cb0b0b;
     font-family: 'Montserrat';
     line-height: 25px;
     text-align: center;
-    /*border-left: 3px solid #3D5A80;*/
-    /*border-right: 3px solid rgb(0 0 0 / 0%);*/
 }
 
 .contact-info {
@@ -188,7 +193,7 @@ img {
 }
 
 .sticky {
-    background-color: #110520;
+    background-color: #000000;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
@@ -256,16 +261,55 @@ a:active {
     border: 0;
     border-radius: var(--bs-dropdown-item-border-radius,0);
 }
+.change2 {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    width: 150px;
+    height: 50px;
+    background-color: #9e1a1ae8;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out; /* Add transition for smoother effect */
+}
+
+.resume-icon {
+    display: block;
+    margin-top: 10px; /* Adjust the margin to position the icon below the button */
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px; /* Adjust the size of the image as needed */
+    height: auto;
+    opacity: 0; /* Initially hide the image */
+}
+
+.change2:hover + .resume-icon {
+    opacity: 1; /* Show the image on hover */
+}
+
+.change2:hover {
+    background-color: #7a0d0de8; /* Change background color on hover */
+}
+
 .dropdown-menu {
     --bs-dropdown-bg: #700707 !important; 
 }
-.nav-link:focus, .nav-link:hover {
+
+.nav-link:focus,
+.nav-link:hover {
     color: rgb(188 12 12 / 80%) !important;
 }
+
 .dropdown-toggle {
     text-align: center !important;
     text-decoration: none;
 }
+
 
 .navbar {
     font-size: 20px !important;
