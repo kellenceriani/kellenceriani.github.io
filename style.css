@@ -1,7 +1,8 @@
 /* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Allerta&family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-/* Base styling */
+/* Base Styling */
 * {
     font-family: "Montserrat", sans-serif;
     box-sizing: border-box;
@@ -10,12 +11,12 @@
 }
 
 body {
-    background-color: #000000 !important;
+    background-color: #000 !important;
     color: #333;
     line-height: 1.6;
 }
 
-/* Grid system */
+/* Grid System */
 [class*="col-"] {
     width: 100%;
     float: left;
@@ -44,8 +45,7 @@ body {
 }
 
 /* Layout */
-.row::after,
-.rowBorder::after {
+.row::after, .rowBorder::after {
     content: "";
     clear: both;
     display: table;
@@ -58,21 +58,23 @@ body {
     padding: 20px;
 }
 
-/* Styling for Heading */
 .heading {
     font-size: 2.5rem;
-    color: #ffffff !important;
+    color: #fff !important;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
 /* Parallax Backgrounds */
-.parallax {
-    background-image: url('Images/wake_up.gif');
-    min-height: 200px;
+.parallax, .parallax2 {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.parallax {
+    background-image: url('Images/wake_up.gif');
+    min-height: 200px;
     image-rendering: crisp-edges;
 }
 
@@ -80,76 +82,51 @@ body {
     background-image: url('Images/unnamed.png');
     min-height: 400px;
     background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
-/* Section Hover Effect - Squiggly Line */
-.sections a {
+.sections, .sectionsdiff {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #1c1c1c;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border: 4px solid #fff;
+    box-shadow: 2px 2px 0px #888;
+    transition: all 0.3s ease-in-out;
+}
+
+.sections a, .sectionsdiff a {
+    color: white;
     text-decoration: none;
-    /* color: inherit; */
     position: relative;
     display: inline-block;
     font-size: 1.1rem;
     transition: color 0.3s;
 }
-.sections a:hover {
-    color: #d9534f; /* Highlight color */
+
+.sections:hover, .sectionsdiff:hover {
+    background-color: #5d5b6b;
+    color: yellow;
+    transform: scale(1.05);
 }
 
-.sections a::after {
+.sections a:hover { color: #d9534f; }
+
+.sections a::after, .sectionsdiff a::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
     bottom: -5px;
     height: 2px;
-    background: repeating-linear-gradient(
-        -45deg,
-        #d9534f,
-        #d9534f 5px,
-        #ffffff 5px,
-        #ffffff 10px
-    );
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
-    transform-origin: left;
+    background: repeating-linear-gradient(-45deg, #d9534f, #d9534f 5px, #fff 5px, #fff 10px);
 }
 
-.sections a:hover::after {
-    transform: scaleX(1); /* Expand squiggly line on hover */
-}
+.sections a::after { transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; }
+.sections a:hover::after { transform: scaleX(1); }
 
-/*Same code for sectionsdiff as sections but with the color change*/
-/* Section Hover Effect - Squiggly Line */
-.sectionsdiff a {
-    text-decoration: none;
-    color: #d9534f;
-    position: relative;
-    display: inline-block;
-    font-size: 1.1rem;
-}
-
-.sectionsdiff a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -5px;
-    height: 2px;
-    background: repeating-linear-gradient(
-        -45deg,
-        #d9534f,
-        #d9534f 5px,
-        #ffffff 5px,
-        #ffffff 10px
-    );
-    transform: scaleX(1); /* Expanded by default */
-    transform-origin: left;
-}
-
-
+.sectionsdiff a { color: #d9534f; }
+.sectionsdiff a::after { transform: scaleX(1); }
 
 /* Resume Button */
 .change2 {
@@ -162,15 +139,8 @@ body {
     transition: background-color 0.3s;
 }
 
-.change2:hover {
-    background-color: #901c41;
-}
-
-.resume-icon {
-    margin-left: 10px;
-    width: 20px;
-    vertical-align: middle;
-}
+.change2:hover { background-color: #901c41; }
+.resume-icon { margin-left: 10px; width: 20px; vertical-align: middle; }
 
 /* Profile Picture */
 #pfp {
@@ -178,10 +148,9 @@ body {
     border: 3px solid #2980b9;
 }
 
-/* Icon Section */
+/* Icons */
 .iconImage {
     width: 50px;
-    height: auto;
     margin: 10px;
     filter: grayscale(50%);
     transition: filter 0.3s, transform 0.3s;
@@ -194,7 +163,7 @@ body {
 
 /* Contact Section */
 .contact-info {
-    color: #ffffff;
+    color: #fff;
     font-size: 1rem;
     margin: 10px 0;
 }
@@ -204,23 +173,18 @@ body {
     text-decoration: none;
 }
 
-.contact-info a:hover {
-    text-decoration: underline;
-}
+.contact-info a:hover { text-decoration: underline; }
 
 /* Social Icons */
-.col-3{
-    color: #e0e0e0; 
-}
+.col-3 { color: #e0e0e0; }
+
 .social a {
     color: #2c3e50;
     font-size: 2rem;
     transition: color 0.3s;
 }
 
-.social a:hover {
-    color: #2980b9;
-}
+.social a:hover { color: #2980b9; }
 
 /* Divider Lines */
 .hr, .hr2, .hr3 {
@@ -228,30 +192,54 @@ body {
     border-top: 2px solid #e0e0e0;
     margin: 20px 0;
 }
+
 /* Footer */
-h1.white, h2.white, p.white {
-    color: #e0e0e0;
-}
+h1.white, h2.white, p.white { color: #e0e0e0; }
 
-/* Media Queries for Responsiveness */
+/* Media Queries */
 @media only screen and (max-width: 600px) {
-    .heading {
-        font-size: 2rem;
-    }
-
-    #name {
-        font-size: 1.5rem;
-    }
-
-    .sections {
-        font-size: 1rem;
-    }
-
-    .contact-info {
-        font-size: 0.9rem;
-    }
+    .heading { font-size: 2rem; }
+    #name { font-size: 1.5rem; }
+    .sections { font-size: 1rem; }
+    .contact-info { font-size: 0.9rem; }
 }
+
 .dropdown-toggle {
     font-size: 1rem;
     padding: 5px 10px;
+}
+/* Carousel Styling */
+#portfolioCarousel {
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+}
+
+.carousel-inner {
+    padding: 10px;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    position: absolute;
+    bottom: -40px;
+    transform: translateX(-50%);
+}
+
+.carousel-control-prev {
+    left: 45%;
+}
+
+.carousel-control-next {
+    right: 45%;
+}
+
+.custom-arrow {
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.custom-arrow:hover {
+    color: #ffcc00;
 }
