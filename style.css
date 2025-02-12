@@ -88,7 +88,7 @@ body {
     font-family: 'Press Start 2P', cursive;
     background-color: #1c1c1c;
     color: white;
-    padding: 10px;
+    padding: 5px;
     margin: 5px;
     border: 4px solid #fff;
     box-shadow: 2px 2px 0px #888;
@@ -344,4 +344,34 @@ h1.white, h2.white, p.white { color: #e0e0e0; }
     line-height: 30px; /* Center the text vertically */
     font-weight: bold;
     color: white;
+}
+
+
+/* Baseball-Themed Scrollbar */
+
+/* Scrollbar Track */
+::-webkit-scrollbar {
+    width: 15px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: white; /* White like a baseball */
+    border-radius: 10px;
+    border: 3px solid red; /* Red stitching effect */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Scrollbar Thumb (Handle) */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8B5A2B 30%, #EEC591 100%);
+    border-radius: 10px;
+    border: 3px solid #6B4226; /* Darker wood-like outline */
+    height: 50px; /* Control thumb size */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect */
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #6B4226 30%, #D2A679 100%);
+    transform: scale(1.1);
 }
