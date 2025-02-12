@@ -12,7 +12,7 @@
 
 body {
     background-color: #000 !important;
-    color: #333;
+    /* color: #333; */
     line-height: 1.6;
 }
 
@@ -143,48 +143,63 @@ body {
 .resume-icon { margin-left: 10px; width: 20px; vertical-align: middle; }
 
 /* Profile Picture */
-#pfp {
-    border-radius: 50%;
-    border: 3px solid #2980b9;
+.about-section {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
 }
-
-/* Icons */
+.profile-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+}
+#pfp {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #2980b9;
+    margin-bottom: 15px;
+}
+.name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.resume-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2980b9;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+.resume-btn:hover {
+    background-color: #901c41;
+}
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+.social-icons a:hover {
+    color: #ffcc00;
+}
+/*tool icons*/
 .iconImage {
     width: 50px;
-    margin: 10px;
-    filter: grayscale(50%);
-    transition: filter 0.3s, transform 0.3s;
+    height: 50px;
+    transition: transform 0.3s ease;
 }
 
 .iconImage:hover {
-    filter: grayscale(0%);
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
-
-/* Contact Section */
-.contact-info {
-    color: #fff;
-    font-size: 1rem;
-    margin: 10px 0;
-}
-
-.contact-info a {
-    color: #2980b9;
-    text-decoration: none;
-}
-
-.contact-info a:hover { text-decoration: underline; }
-
-/* Social Icons */
-.col-3 { color: #e0e0e0; }
-
-.social a {
-    color: #2c3e50;
-    font-size: 2rem;
-    transition: color 0.3s;
-}
-
-.social a:hover { color: #2980b9; }
 
 /* Divider Lines */
 .hr, .hr2, .hr3 {
@@ -242,4 +257,91 @@ h1.white, h2.white, p.white { color: #e0e0e0; }
 
 .custom-arrow:hover {
     color: #ffcc00;
+}
+.technologies-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.wheel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tool-wheel {
+    background-color: #333;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    max-width: 300px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.tool-image {
+    max-width: 20%;
+    max-height: 20%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.tool-name {
+    color: white;
+    font-size: 24px;
+    margin-top: 15px;
+}
+
+.skill-level {
+    color: #fff;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+}
+
+.wheel-button {
+    background-color: #444;
+    border: none;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.wheel-button:hover {
+    background-color: #555;
+}
+/* In your style.css */
+.progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    height: 30px;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    width: 0%;
+    position: relative;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    text-align: center;
+    line-height: 30px; /* Center the text vertically */
+    font-weight: bold;
+    color: white;
 }
