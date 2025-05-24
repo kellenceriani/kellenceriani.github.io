@@ -190,6 +190,39 @@ body {
 .social-icons a:hover {
     color: #ffcc00;
 }
+/* Style for social icons */
+.social i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+.social i:hover {
+    transform: scale(1.2);
+}
+
+/* Individual Brand Colors */
+.fa-linkedin { color: #fff; }
+.fa-facebook { color: #fff; }
+.fa-youtube { color: #fff; }
+.fa-discord { color: #fff; }
+.fa-instagram { color: #fff; }
+.fa-github { color: #fff; }  /* White, since GitHub's logo is usually white on dark */
+.fa-steam { color: #fff; }
+.fa-xbox { color: #fff; }
+
+/* Optional: Lighten on hover */
+.social i.fa-linkedin:hover { color: #3399FF; }
+.social i.fa-facebook:hover { color: #3B5998; }
+.social i.fa-youtube:hover { color: #FF4D4D; }
+.social i.fa-discord:hover { color: #7983F5; }
+.social i.fa-instagram:hover { color: #FF5D94; }
+.social i.fa-github:hover { color: #bbbbbb; }
+.social i.fa-steam:hover { color: #3b3f47; }
+.social i.fa-xbox:hover { color: #44d62c; }
+
+
 /*tool icons*/
 .iconImage {
     width: 50px;
@@ -218,9 +251,6 @@ h1.white, h2.white, p.white { color: #e0e0e0; }
     .sections { font-size: 1rem; }
     .contact-info { font-size: 0.9rem; }
 }
-
-
-
 
 /* Baseball-Themed Scrollbar */
 
