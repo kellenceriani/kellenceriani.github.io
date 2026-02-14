@@ -120,67 +120,7 @@ html {
   height: 0;
 }
 
-/* warning banner shown when page is opened directly from the filesystem
-   in Chrome; we add the element via HTML and make it visible with JS. */
-#file-warning {
-  display: none;                 /* revealed by script only */
-  background: #ffeb3b;
-  color: #000;
-  padding: 0.5rem 1rem;
-  text-align: center;
-  font-weight: 600;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 3000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  font-size: 0.95rem;
-  line-height: 1.4;
-  /* ensure the close button doesn’t shift the text */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-}
 
-#file-warning button {
-  position: absolute;
-  right: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: inherit;
-  padding: 0;
-}
-
-#file-warning button:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-/* when banner is visible, push page content down so header/nav
-   aren’t obscured */
-body.file-warning-visible {
-  padding-top: 2.2rem; /* roughly the height of the banner */
-}
-
-/* mobile: header already takes up vertical space and users expect the
-   warning below the nav rather than shifting everything. hide body
-   padding and move banner beneath header. */
-@media screen and (max-width: 600px) {
-  body.file-warning-visible {
-    padding-top: 0;
-  }
-  #file-warning {
-    top: 3.5rem; /* roughly equal to header height on mobile */
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-  }
-}
 
 /* helper class to prevent text selection during drag */
 .no-select {
