@@ -1,7 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="no-js">
 
 <head>
+  <!-- early script sets a helper class so CSS can tell when JS ran,
+       and warns Chrome users opening files directly (a common
+       source of “it works in Edge but not Chrome”). -->
+  <script>
+    // switch flag immediately; this runs even if external scripts fail
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js-enabled');
+
+    // simple warning for Chrome/file:// scenario with optional dismissal
+    (function(){
+      const isChromeFile = location.protocol === 'file:' && navigator.userAgent.indexOf('Chrome') !== -1;
+      const dismissed = localStorage.getItem('fileWarningDismissed');
+
+      function showWarning() {
+        const msg = document.getElementById('file-warning');
+        if (msg) {
+          msg.style.display = 'block';
+          document.body.classList.add('file-warning-visible');
+        }
+      }
+
+      function hideWarning() {
+        const msg = document.getElementById('file-warning');
+        if (msg) {
+          msg.style.display = 'none';
+          document.body.classList.remove('file-warning-visible');
+          localStorage.setItem('fileWarningDismissed', 'true');
+        }
+      }
+
+      if (isChromeFile && !dismissed) {
+        window.addEventListener('DOMContentLoaded', () => {
+          showWarning();
+          const closeBtn = document.getElementById('file-warning-close');
+          if (closeBtn) {
+            closeBtn.addEventListener('click', hideWarning);
+          }
+        });
+      }
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -46,6 +87,14 @@
 </head>
 
 <body>
+  <!-- warning shown when Chrome opens the file via file://, which often
+       prevents external scripts/styles from loading. (script toggles it) -->
+  <div id="file-warning">⚠️ Chrome blocks some resources when viewing local
+  files. Serve the folder via HTTP (e.g. <code>python -m http.server</code> or
+  the Live Server extension) to see the full experience.
+    <button id="file-warning-close" aria-label="Dismiss warning">&times;</button>
+  </div>
+
   <!-- <a href="#main-content" class="skip-link">Skip to main content</a> -->
   <noscript><p style="background:#ffc107;color:#000;padding:1rem;text-align:center;">This site works best with JavaScript enabled.</p></noscript>
 
