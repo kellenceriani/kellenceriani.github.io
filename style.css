@@ -1122,6 +1122,40 @@ footer .footer-nav li a:hover {
   text-decoration: underline;
 }
 
+footer .old-portfolios {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+}
+
+footer .old-portfolios h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-muted);
+}
+
+footer .old-portfolios ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .old-portfolios li {
+  margin-bottom: 0.25rem;
+}
+
+footer .old-portfolios a {
+  color: var(--color-link);
+  text-decoration: underline; /* underline added */
+  transition: color 0.2s ease;
+}
+
+footer .old-portfolios a:hover {
+  color: var(--color-accent);
+}
+
+
+
 /* =========================
    RESPONSIVE DESIGN
 ========================= */

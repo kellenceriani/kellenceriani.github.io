@@ -1,0 +1,282 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Allerta&family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* Base Styling */
+* {
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #000 !important;
+    /* color: #333; */
+    line-height: 1.6;
+}
+
+/* Grid System */
+[class*="col-"] {
+    width: 100%;
+    float: left;
+}
+
+@media only screen and (min-width: 768px) {
+    .col-1 { width: 8.33%; }
+    .col-2 { width: 16.66%; }
+    .col-3 { width: 25%; }
+    .col-4 { width: 33.33%; }
+    .col-5 { width: 41.66%; }
+    .col-6 { width: 50%; }
+    .col-7 { width: 58.33%; }
+    .col-8 { width: 66.66%; }
+    .col-9 { width: 75%; }
+    .col-10 { width: 83.33%; }
+    .col-11 { width: 91.66%; }
+    .col-12 { width: 100%; }
+}
+
+@media only screen and (max-width: 767px) {
+    .col-lg-2 { width: 50% !important; }
+    .sections { padding: 5px !important; }
+    .social { font-size: 40px !important; }
+    .heading { font-size: 30px !important; }
+}
+
+/* Layout */
+.row::after, .rowBorder::after {
+    content: "";
+    clear: both;
+    display: table;
+    background-color: #8b8383 !important;
+}
+
+.container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.heading {
+    font-size: 2.5rem;
+    color: #fff !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Parallax Backgrounds */
+.parallax, .parallax2 {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax {
+    background-image: url('Images/wake_up.gif');
+    min-height: 200px;
+    image-rendering: crisp-edges;
+}
+
+.parallax2 {
+    background-image: url('Images/unnamed.png');
+    min-height: 400px;
+    background-attachment: fixed;
+}
+
+.sections, .sectionsdiff {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #1c1c1c;
+    color: white;
+    padding: 5px;
+    margin: 5px;
+    border: 4px solid #fff;
+    box-shadow: 2px 2px 0px #888;
+    transition: all 0.3s ease-in-out;
+}
+
+.sections a, .sectionsdiff a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.sections:hover, .sectionsdiff:hover {
+    background-color: #5d5b6b;
+    color: yellow;
+    transform: scale(1.05);
+}
+
+.sections a:hover { color: #d9534f; }
+
+.sections a::after, .sectionsdiff a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 2px;
+    background: repeating-linear-gradient(-45deg, #d9534f, #d9534f 5px, #fff 5px, #fff 10px);
+}
+
+.sections a::after { transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; }
+.sections a:hover::after { transform: scaleX(1); }
+
+.sectionsdiff a { color: #d9534f; }
+.sectionsdiff a::after { transform: scaleX(1); }
+
+/* Resume Button */
+.change2 {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2980b9;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.change2:hover { background-color: #901c41; }
+.resume-icon { margin-left: 10px; width: 20px; vertical-align: middle; }
+
+/* Profile Picture */
+.about-section {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+.profile-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+}
+#pfp {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #2980b9;
+    margin-bottom: 15px;
+}
+.name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.resume-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2980b9;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+.resume-btn:hover {
+    background-color: #901c41;
+}
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+.social-icons a:hover {
+    color: #ffcc00;
+}
+/* Style for social icons */
+.social i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+.social i:hover {
+    transform: scale(1.2);
+}
+
+/* Individual Brand Colors */
+.fa-linkedin { color: #fff; }
+.fa-facebook { color: #fff; }
+.fa-youtube { color: #fff; }
+.fa-discord { color: #fff; }
+.fa-instagram { color: #fff; }
+.fa-github { color: #fff; }  /* White, since GitHub's logo is usually white on dark */
+.fa-steam { color: #fff; }
+.fa-xbox { color: #fff; }
+
+/* Optional: Lighten on hover */
+.social i.fa-linkedin:hover { color: #3399FF; }
+.social i.fa-facebook:hover { color: #3B5998; }
+.social i.fa-youtube:hover { color: #FF4D4D; }
+.social i.fa-discord:hover { color: #7983F5; }
+.social i.fa-instagram:hover { color: #FF5D94; }
+.social i.fa-github:hover { color: #bbbbbb; }
+.social i.fa-steam:hover { color: #3b3f47; }
+.social i.fa-xbox:hover { color: #44d62c; }
+
+
+/*tool icons*/
+.iconImage {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.iconImage:hover {
+    transform: scale(1.2);
+}
+
+/* Divider Lines */
+.hr, .hr2, .hr3 {
+    border: none;
+    border-top: 2px solid #e0e0e0;
+    margin: 20px 0;
+}
+
+/* Footer */
+h1.white, h2.white, p.white { color: #e0e0e0; }
+
+/* Media Queries */
+@media only screen and (max-width: 600px) {
+    .heading { font-size: 2rem; }
+    #name { font-size: 1.5rem; }
+    .sections { font-size: 1rem; }
+    .contact-info { font-size: 0.9rem; }
+}
+
+/* Baseball-Themed Scrollbar */
+
+/* Scrollbar Track */
+::-webkit-scrollbar {
+    width: 15px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: white; /* White like a baseball */
+    border-radius: 10px;
+    border: 3px solid red; /* Red stitching effect */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Scrollbar Thumb (Handle) */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8B5A2B 30%, #EEC591 100%);
+    border-radius: 10px;
+    border: 3px solid #6B4226; /* Darker wood-like outline */
+    height: 50px; /* Control thumb size */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect */
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #6B4226 30%, #D2A679 100%);
+    transform: scale(1.1);
+}
