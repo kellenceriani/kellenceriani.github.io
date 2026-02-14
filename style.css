@@ -1,6 +1,88 @@
 /* =========================
-   GLOBAL STYLES
+   GLOBAL STYLES & VARIABLES
 ========================= */
+:root {
+  --color-primary: #0D47A1;
+  --color-secondary: #FFC107;
+  /* primary text on page (headings, body copy) */
+  --color-text: #212121;
+  /* secondary/paragraph text, captions, smaller details */
+  --color-secondary-text: #424242;
+  /* tertiary text such as dates, metadata */
+  --color-tertiary-text: #616161;
+  --color-bg: #F5F5F5;            /* page background */
+  --color-surface: #ffffff;       /* cards, sections, nav menus */
+  --color-card: #ffffff;          /* alias for surface when needed */
+  --color-alt-surface: #f5f5f5;   /* alternate surfaces like audio cards */
+  --color-marker-border: #ccc;    /* baseball marker border */
+  --color-thumb-color: #212121;   /* baseball thumb & marker text */
+  --font-family-base: 'Inter', sans-serif;
+  --radius: 6px;
+  --transition-speed: 0.3s;
+  --scrollbar-thumb: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><circle cx='16' cy='16' r='14' fill='white' stroke='red' stroke-width='2'/><path d='M6,6 C12,12 20,20 26,26' stroke='red' stroke-width='2' fill='none'/><path d='M26,6 C20,12 12,20 6,26' stroke='red' stroke-width='2' fill='none'/></svg>");
+  --color-tag-bg: #000;
+  --color-tag-text: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #e0e0e0;
+    --color-secondary-text: #bdbdbd;
+    --color-tertiary-text: #9e9e9e;
+    --color-bg: #121212;
+    --color-surface: #1e1e1e;
+    --color-card: #1e1e1e;
+    --color-alt-surface: #2a2a2a;
+    --color-marker-border: #555;
+    --color-thumb-color: #e0e0e0;
+    --color-tag-bg: #e0e0e0;
+    --color-tag-text: #212121;
+  }
+}
+
+/* class-based theme toggle for manual switching */
+.dark {
+  --color-text: #e0e0e0;
+  --color-secondary-text: #bdbdbd;
+  --color-tertiary-text: #9e9e9e;
+  --color-bg: #121212;
+  --color-surface: #1e1e1e;
+  --color-card: #1e1e1e;
+  --color-alt-surface: #2a2a2a;
+  --color-tag-bg: #e0e0e0;
+  --color-tag-text: #212121;
+  --color-marker-border: #555;
+  --color-thumb-color: #e0e0e0;
+}
+
+/* utility class for screen-reader-only text */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* skip link */
+/* .skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 2000;
+  transition: top 0.3s ease;
+}
+.skip-link:focus {
+  top: 0;
+} */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,50 +93,224 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ========== custom baseball scrollbar ========== */
+/* ====================================================
+   CUSTOM BASEBALL-THEMED SCROLLBAR (overlay style)
+   completely replaces native scrollbars on capable devices
+   ----------------------------------------------------
+   - Desktop browsers: uses an overlay div to render track
+     and thumb so we can animate/drag and ensure consistent
+     visual across engines.
+   - Touch/mobile: native (hidden on many platforms) falls
+     back so as not to impede touch scrolling.
+   - Very slick interactions: thumb rotates slightly while
+     scrolling, scales on hover/drag, and allows drag-to-scroll.
+   - Responsive: hidden on narrow screens and non-pointer
+     devices. Works with dark/light modes.
+==================================================== */
+
+/* hide the native UI in all browsers we can */
+html {
+  scrollbar-width: none;          /* firefox */
+  -ms-overflow-style: none;       /* IE 10+ */
+}
 body::-webkit-scrollbar {
-  width: 16px;
+  width: 0;
+  height: 0;
 }
 
-body::-webkit-scrollbar-track {
-  background: linear-gradient(90deg, transparent 0%, transparent 25%, #fff 25%, #fff 75%, transparent 75%, transparent 100%);
+/* helper class to prevent text selection during drag */
+.no-select {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
 }
 
-body::-webkit-scrollbar-thumb {
-  /* inline SVG drawing a simple baseball for portability */
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><circle cx='16' cy='16' r='14' fill='white' stroke='red' stroke-width='2'/><path d='M6,6 C12,12 20,20 26,26' stroke='red' stroke-width='2' fill='none'/><path d='M26,6 C20,12 12,20 6,26' stroke='red' stroke-width='2' fill='none'/></svg>") center center no-repeat;
-  background-size: 70%;
-  border-radius: 8px;
-  border: 4px solid rgba(0,0,0,0);
-  background-clip: padding-box;
+/* the overlay container */
+.custom-scrollbar {
+  position: fixed;
+  right: 0; /* flush with edge */
+  top: 0;
+  width: 24px;
+  height: 100vh;
+  pointer-events: none; /* allow clicks through when hidden */
+  z-index: 2000;
+  display: none;        /* exposed via media queries */
 }
 
-/* firefox fallback */
+/* show only on devices with precise pointing (mouse or stylus)
+   and when hover capability exists. also hide on narrow viewports
+   to avoid crowding small screens */
+@media (hover: hover) and (pointer: fine) and (min-width: 600px) {
+  .custom-scrollbar {
+    display: block;
+    pointer-events: auto; /* enable interaction */
+  }
+}
+
+.custom-scrollbar .track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--color-alt-surface);
+  border-radius: 12px;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* markers will be positioned via JS instead of a repeating pattern */
+.custom-scrollbar .marker {
+  position: absolute;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  background: white;
+  border: 2px solid var(--color-marker-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--color-thumb-color);
+  pointer-events: none;
+  z-index: 1; /* ensure bases sit above the thumb */
+}
+
+/* make sure thumb stays beneath markers */
+.custom-scrollbar .thumb {
+  z-index: 0;
+}
+.custom-scrollbar .marker span {
+  transform: rotate(-45deg);
+}
+
+
+.custom-scrollbar .thumb {
+  position: absolute;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  /* rotation is stored in a custom property so other
+     transforms (scale, etc.) can be composed without
+     being overwritten by JS. */
+  transform: translateX(-50%) rotate(var(--rotate-angle,0deg));
+  border-radius: 50%;
+  background: none;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-thumb-color);
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.15s ease, top 0.15s ease;
+}
+
+.custom-scrollbar .thumb::before {
+  content: '⚾';
+}
+
+/* thumb hover/active states give the ball a little bounce */
+.custom-scrollbar .thumb:hover {
+  transform: translateX(-50%) scale(1.15) rotate(var(--rotate-angle,0deg));
+}
+.custom-scrollbar .thumb:active {
+  transform: translateX(-50%) scale(1.1) rotate(var(--rotate-angle,0deg));
+}
+
+/* a small keyframe for continuous rotation when scrolling
+   (added/removed by JS depending on scroll velocity) */
+@keyframes baseball-roll {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .custom-scrollbar .track {
+    background: var(--color-alt-surface);
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+  }
+}
+
+/* end of custom overlay scrollbar */
+
+
 body {
-  scrollbar-width: thin;
-  scrollbar-color: #ccc #f5f5f5;
-}
-
-
-body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   line-height: 1.6;
-  color: #212121;
-  background-color: #F5F5F5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
+
+/* ensure images behave */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* focus outline for accessibility */
+:focus {
+  outline: 3px dashed var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* back-to-top button */
+#back-to-top {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1500;
+}
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 
 /* =========================
    BUTTONS
 ========================= */
+/* adapt to dark mode */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #0b3a80;
+}
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+}
+.btn-secondary:hover {
+  background-color: #e6ac00;
+}
+
 .btn-primary,
 .btn-secondary,
 .btn-modal {
   display: inline-block;
   padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  border-radius: var(--radius);
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
   margin-top: 0.5rem;
   cursor: pointer;
 }
@@ -70,7 +326,7 @@ body {
 
 .btn-secondary {
   background-color: #FFC107;
-  color: #212121;
+  color: var(--color-text);
 }
 
 .btn-secondary:hover {
@@ -78,8 +334,8 @@ body {
 }
 
 .btn-modal {
-  background-color: #e0e0e0;
-  color: #212121;
+  background-color: var(--color-alt-surface);
+  color: var(--color-text);
   font-size: 1.2rem;
   border: none;
   position: absolute;
@@ -105,18 +361,47 @@ body {
 ========================= */
 header {
   width: 100%;
-  background: #ffffff;
+  background: var(--color-bg);
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* theme toggle button placed beside logo */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text);
+  padding: 0.3rem;
+  margin-left: 0.5rem;
+  transition: color var(--transition-speed) ease;
+}
+.theme-toggle:focus {
+  outline: 3px dashed var(--color-secondary);
+  outline-offset: 2px;
+}
+.theme-toggle:hover {
+  color: var(--color-primary);
+}
+
+/* ensure sections do not hide behind sticky header when jumped to */
+section {
+  scroll-margin-top: 80px;
+} 
+
 .header-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
+  gap: 0.5rem;              /* keep items tightly grouped */
+}
+
+/* push logo to one side so nav + toggle stay together */
+.header-container .logo {
+  margin-right: auto;
 }
 
 header .logo {
@@ -146,7 +431,7 @@ header .logo {
 
 .nav-links li a {
   text-decoration: none;
-  color: #212121;
+  color: var(--color-text);
   font-weight: 500;
   transition: color 0.3s ease;
 }
@@ -168,8 +453,20 @@ header .logo {
 .hamburger span {
   width: 25px;
   height: 3px;
-  background-color: #212121;
+  background-color: var(--color-text);
   border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* animate hamburger into X on open */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* =========================
@@ -187,6 +484,11 @@ header .logo {
   position: relative; /* needed for overlay and consistency */
   overflow: hidden;
   flex-wrap: wrap;
+}
+.dark .hero {
+  background: 
+    linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('imgs/wake_up.gif') center/cover no-repeat;
 }
 
 .hero-text {
@@ -214,7 +516,7 @@ header .logo {
 ========================= */
 .about {
   padding: 5rem 0;
-  background-color: #ffffff;
+  background-color: var(--color-surface);
 }
 
 /* make about text sleeker and bolder */
@@ -230,7 +532,7 @@ header .logo {
   font-weight: 500;
   letter-spacing: 0.5px;
   line-height: 1.65;
-  color: #424242;
+  color: var(--color-secondary-text);
 }
 
 /* Education block within about section */
@@ -274,6 +576,13 @@ header .logo {
   padding: 5rem 0;
 }
 
+/* slightly larger section title for projects */
+.projects h2 {
+  font-size: 2.4rem;
+  letter-spacing: 1px;
+}
+
+
 .project-filters {
   display: flex;
   gap: 1rem;
@@ -283,18 +592,49 @@ header .logo {
 
 .filter-btn {
   padding: 0.5rem 1rem;
-  border: none;
-  background: #e0e0e0;
+  /* light-mode buttons start as outlined gray */
+  border: 1px solid #ccc;
+  background: transparent;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
   font-weight: 500;
 }
 
-.filter-btn.active,
-.filter-btn:hover {
-  background-color: #0D47A1;
+/* dark‑mode filters should mimic tag colours but remain legible before selection */
+.dark .filter-btn {
+  /* keep the appearance similar to tags, but still outlined until activated */
+  border: 1px solid #eee;            /* light border for contrast */
+  background-color: transparent;
+  color: #eee;                       /* light text for visibility on dark bg */
+}
+
+.dark .filter-btn:hover,
+.dark .filter-btn:focus {
+  background-color: rgba(255,255,255,0.15); /* subtle highlight */
+}
+
+/* dark mode active state should also turn blue */
+.dark .filter-btn.active,
+.dark .filter-btn[aria-selected="true"] {
+  background-color: var(--color-primary);
   color: #fff;
+  border-color: var(--color-primary);
+}
+.filter-btn:hover {
+  transform: scale(1.05);
+}
+.filter-btn:focus {
+  outline: 3px dashed var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.filter-btn.active,
+.filter-btn:hover,
+.filter-btn[aria-selected="true"] {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
 }
 
 .project-grid {
@@ -304,7 +644,7 @@ header .logo {
 }
 
 .project-card {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
@@ -508,13 +848,13 @@ header .logo {
 /* Project date/timeline */
 .project-date {
   font-size: 0.9rem;
-  color: #616161;
+  color: var(--color-tertiary-text);
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 .modal-date {
-  color: #424242;
+  color: var(--color-secondary-text);
   font-weight: 600;
   margin: 0.25rem 0 0.75rem 0;
 }
@@ -537,11 +877,21 @@ header .logo {
 
 .tag {
   padding: 0.3rem 0.6rem;
-  background-color: #212121;
-  color: #fff;
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
   border-radius: 50px;
   font-size: 0.8rem;
   font-weight: 500;
+  border: 1px solid #000;        /* black outline in light mode */
+}
+
+/* ensure modal tags are unaffected by the border change */
+.modal .tag {
+  border: none;
+}
+
+.dark .tag {
+  border: none;           /* light border not needed when tags are pale */
 }
 
 /* Smaller tags and labels inside project cards (modal tags remain unchanged) */
@@ -567,7 +917,7 @@ header .logo {
 }
 
 .audio-card {
-  background: #f5f5f5;
+  background: var(--color-alt-surface);
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
@@ -591,7 +941,7 @@ header .logo {
 }
 
 .modal-content {
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   margin: 5% auto;
   padding: 2rem;
   border-radius: 10px;
@@ -607,6 +957,10 @@ header .logo {
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.close-modal:hover {
+  transform: rotate(90deg);
 }
 
 /* =========================
@@ -630,7 +984,7 @@ header .logo {
 ========================= */
 .contact {
   padding: 5rem 0;
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   text-align: center;
 }
 
@@ -655,6 +1009,18 @@ header .logo {
   width: 40px;
   height: 40px;
   transition: transform 0.3s ease;
+}
+
+/* lighten icons in dark mode to match tag/filter colors */
+.dark .socials img {
+  /* brighten and invert icons when in dark mode for better contrast and a white appearance */
+  filter: brightness(2) invert(1);
+  /* remove any other filters so SVGs can inherit color if they use currentColor */
+}
+
+/* ensure the link wrapping the icon takes the tag text color in dark mode */
+.dark .socials a {
+  color: var(--color-tag-text);
 }
 
 .socials img:hover {
@@ -695,6 +1061,29 @@ footer .footer-nav li a:hover {
 /* =========================
    RESPONSIVE DESIGN
 ========================= */
+
+/* accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto;
+  }
+}
+
+/* link defaults */
+a {
+  color: var(--color-primary);
+  text-decoration-skip-ink: auto;
+}
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
 @media screen and (max-width: 992px) {
   .hero {
     flex-direction: column;
@@ -709,7 +1098,7 @@ footer .footer-nav li a:hover {
   .nav-links {
     display: none;
     flex-direction: column;
-    background: #ffffff;
+    background: var(--color-surface);
     position: absolute;
     top: 60px;
     right: 0;
@@ -741,4 +1130,48 @@ footer .footer-nav li a:hover {
 .see-more-container .btn-primary {
   padding: 0.65rem 1.25rem;
   font-size: 1rem;
+}
+
+/* =========================
+   ANIMATIONS & TRANSITIONS
+========================= */
+/* elements that will animate in when scrolled into view */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* smooth modal fade in/out */
+.modal {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.modal.show {
+  opacity: 1;
+}
+
+/* hamburger and nav link transitions */
+.hamburger span,
+.nav-links li a {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* hero headline entrance */
+.hero-text h1,
+.hero-text p,
+.hero-buttons {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.hero-text.loaded h1,
+.hero-text.loaded p,
+.hero-text.loaded .hero-buttons {
+  opacity: 1;
+  transform: translateY(0);
 }

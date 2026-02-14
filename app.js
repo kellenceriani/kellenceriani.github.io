@@ -4,20 +4,194 @@
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
+function toggleMenu() {
+  const expanded = navLinks.classList.toggle('active');
+  hamburger.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', expanded);
+}
+
+/* =========================
+   CUSTOM SCROLLBAR STATE (shared)
+========================= */
+let customScrollbarMarkers = [];
+let customScrollbarThumb;
+let customScrollbarTrack;
+let customScrollbarScrollbar;
+
+/* =========================
+   THEME TOGGLE / DARK MODE
+========================= */
+function setTheme(theme) {
+  if (theme === 'dark') {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+  // update mobile chrome theme color
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) {
+    // prefer bg color for toolbar
+    const color = getComputedStyle(document.documentElement).getPropertyValue('--color-bg').trim();
+    meta.setAttribute('content', color);
+  }
+}
+
+function updateToggleIcon() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  // choose sun for dark mode (switch to light), moon for light mode
+  const isDark = document.documentElement.classList.contains('dark');
+  btn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  btn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+  btn.title = btn.getAttribute('aria-label');
+}
+
+function initTheme() {
+  const stored = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = stored ? stored : (prefersDark ? 'dark' : 'light');
+  setTheme(theme);
+  updateToggleIcon();
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.classList.contains('dark');
+  const newTheme = isDark ? 'light' : 'dark';
+  setTheme(newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateToggleIcon();
+}
+
+hamburger.addEventListener('click', toggleMenu);
+hamburger.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    toggleMenu();
+  }
 });
 
 /* =========================
    SMOOTH SCROLL FOR NAV LINKS
 ========================= */
+
+function repositionMarker(id) {
+  // unlock all markers first
+  customScrollbarMarkers.forEach(m => m.marker.dataset.locked = 'false');
+  const entry = customScrollbarMarkers.find(m => m.el.id === id);
+  if (!entry) return;
+  entry.marker.dataset.locked = 'true';
+  if (customScrollbarThumb) {
+    // determine where the thumb currently is (using scroll position) and
+    // place the marker at the thumb's center rather than its top edge.
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const thumbHeightPct = parseFloat(customScrollbarThumb.style.height) || 0;
+    const pct = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
+    let topPct = pct * (100 - thumbHeightPct) + thumbHeightPct / 2;
+    // clamp to keep within view
+    const trackHeight = customScrollbarTrack.clientHeight || 1;
+    const halfMarkerPct = (entry.marker.offsetHeight / 2) / trackHeight * 100;
+    topPct = Math.min(Math.max(topPct, halfMarkerPct), 100 - halfMarkerPct);
+    entry.marker.style.top = topPct + '%';
+  }
+}
+
+function moveMarkerAfterScroll(id, targetScroll) {
+  function onScroll() {
+    const cur = document.documentElement.scrollTop || document.body.scrollTop;
+    if (Math.abs(cur - targetScroll) < 2) {
+      repositionMarker(id);
+      window.removeEventListener('scroll', onScroll);
+    }
+  }
+  window.addEventListener('scroll', onScroll);
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
+    const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+    const targetScroll = target.offsetTop - headerHeight;
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+    moveMarkerAfterScroll(target.id, targetScroll);
+    if (navLinks.classList.contains('active')) toggleMenu();
   });
+});
+
+/* =========================
+   SCROLL REVEAL ANIMATIONS
+========================= */
+// add .reveal to sections in HTML via class or here
+const observerOptions = {
+  threshold: 0.1
+};
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// apply observer to relevant elements once DOM is ready
+window.addEventListener('DOMContentLoaded', () => {
+  // theme initialization (must happen before any elements relying on variables)
+  initTheme();
+
+  // attach click handler to toggle button (might not exist in older markup)
+  const themeBtn = document.getElementById('theme-toggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', toggleTheme);
+    themeBtn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleTheme();
+      }
+    });
+  }
+
+  document.querySelectorAll('section, .project-card, .hero-text h1, .hero-text p, .hero-buttons').forEach(el => {
+    el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+
+  // hero load animation after short delay
+  setTimeout(() => {
+    document.querySelector('.hero-text').classList.add('loaded');
+  }, 100);
+
+  // initialize the custom baseball scrollbar overlay
+  initCustomScrollbar();
+
+  // back-to-top button logic
+  const backButton = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backButton.classList.add('show');
+    } else {
+      backButton.classList.remove('show');
+    }
+  });
+  backButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // highlight current section in nav
+  const sections = document.querySelectorAll('section');
+  const navItems = document.querySelectorAll('.nav-links a');
+  const sectionObserver2 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === `#${entry.target.id}`);
+        });
+      }
+    });
+  }, { threshold: 0.6 });
+  sections.forEach(s => sectionObserver2.observe(s));
 });
 
 /* =========================
@@ -172,7 +346,7 @@ const projects = [
     id: 'soundinggreat',
     category: 'web',
     title: 'SoundingGreat Website',
-    date: '2022-2026',
+    date: '2022-2023',
     description: 'Originally built in Wix, migrated to Squarespace, demonstrating UI adaptability and full-stack deployment considerations.',
     tools: ['Adobe Creative Cloud', 'Wix', 'Squarespace'],
     video: 'https://www.youtube.com/embed/dLtcX_ihL9Y',
@@ -288,6 +462,7 @@ function renderProjects(filter = 'all', showAll = false) {
         iframe.src = p.video;
         iframe.title = p.title;
         iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
         mediaDiv.appendChild(iframe);
       } else if (p.live) {
         // special-case: LineupWars uses a 6-image slideshow instead of a single thumbnail
@@ -301,6 +476,7 @@ function renderProjects(filter = 'all', showAll = false) {
             const s = document.createElement('img');
             s.src = `imgs/${i}.png`;
             s.alt = `${p.title} slide ${i}`;
+            s.loading = 'lazy';
             s.classList.add('slide');
             if (i === 1) s.classList.add('active');
             slideshow.appendChild(s);
@@ -338,6 +514,7 @@ function renderProjects(filter = 'all', showAll = false) {
           const img = document.createElement('img');
           img.src = `imgs/${p.id}.png`;
           img.alt = p.title;
+          img.loading = 'lazy';
           mediaDiv.appendChild(img);
         }
       } else if (p.audio) {
@@ -455,6 +632,8 @@ function renderProjects(filter = 'all', showAll = false) {
       infoBtn.classList.add('btn-modal');
       infoBtn.dataset.project = p.id;
       infoBtn.textContent = 'ℹ️';
+      infoBtn.setAttribute('aria-label', 'More info about this project');
+      infoBtn.title = 'More info';
       buttonsDiv.appendChild(infoBtn);
 
       // GitHub, Slides, Wireframe, Live Demo buttons
@@ -462,6 +641,7 @@ function renderProjects(filter = 'all', showAll = false) {
         const ghLink = document.createElement('a');
         ghLink.href = p.github;
         ghLink.target = '_blank';
+        ghLink.rel = 'noopener noreferrer';
         ghLink.classList.add('btn-primary');
         ghLink.textContent = 'GitHub';
         buttonsDiv.appendChild(ghLink);
@@ -471,6 +651,7 @@ function renderProjects(filter = 'all', showAll = false) {
         const slideLink = document.createElement('a');
         slideLink.href = p.slides;
         slideLink.target = '_blank';
+        slideLink.rel = 'noopener noreferrer';
         slideLink.classList.add('btn-primary');
         slideLink.textContent = 'Slides';
         buttonsDiv.appendChild(slideLink);
@@ -480,6 +661,7 @@ function renderProjects(filter = 'all', showAll = false) {
         const wfLink = document.createElement('a');
         wfLink.href = p.wireframe;
         wfLink.target = '_blank';
+        wfLink.rel = 'noopener noreferrer';
         wfLink.classList.add('btn-primary');
         wfLink.textContent = 'Wireframe';
         buttonsDiv.appendChild(wfLink);
@@ -489,6 +671,7 @@ function renderProjects(filter = 'all', showAll = false) {
         const pfLink = document.createElement('a');
         pfLink.href = p.projectFiles;
         pfLink.target = '_blank';
+        pfLink.rel = 'noopener noreferrer';
         pfLink.classList.add('btn-primary');
         pfLink.textContent = 'Project Files';
         buttonsDiv.appendChild(pfLink);
@@ -498,6 +681,7 @@ function renderProjects(filter = 'all', showAll = false) {
         const wf = document.createElement('a');
         wf.href = p.webfile;
         wf.target = '_blank';
+        wf.rel = 'noopener noreferrer';
         wf.classList.add('btn-primary');
         wf.textContent = 'Web File';
         buttonsDiv.appendChild(wf);
@@ -507,6 +691,7 @@ function renderProjects(filter = 'all', showAll = false) {
         const liveLink = document.createElement('a');
         liveLink.href = p.live;
         liveLink.target = '_blank';
+        liveLink.rel = 'noopener noreferrer';
         liveLink.classList.add('btn-primary');
         liveLink.textContent = 'Live Demo';
         buttonsDiv.appendChild(liveLink);
@@ -517,6 +702,7 @@ function renderProjects(filter = 'all', showAll = false) {
         const folderBtn = document.createElement('a');
         folderBtn.href = p.folderLink;
         folderBtn.target = '_blank';
+        folderBtn.rel = 'noopener noreferrer';
         folderBtn.classList.add('btn-primary');
         folderBtn.textContent = 'Full Audio Directory';
         buttonsDiv.appendChild(folderBtn);
@@ -528,7 +714,13 @@ function renderProjects(filter = 'all', showAll = false) {
 
       card.appendChild(mediaDiv);
       card.appendChild(infoDiv);
-        projectGrid.appendChild(card);
+      // clicking on card (but not on buttons/links) also opens modal info
+      card.addEventListener('click', (e) => {
+        if (!e.target.closest('.project-buttons') && !e.target.closest('a')) {
+          infoBtn.click();
+        }
+      });
+      projectGrid.appendChild(card);
       });
 
     // If we're in the 'All' view and not showing all projects, add a centered See More button
@@ -555,11 +747,23 @@ function renderProjects(filter = 'all', showAll = false) {
 ========================= */
 const filterButtons = document.querySelectorAll('.filter-btn');
 
-filterButtons.forEach(btn => {
+filterButtons.forEach((btn, index) => {
   btn.addEventListener('click', () => {
-    filterButtons.forEach(b => b.classList.remove('active'));
+    filterButtons.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected','false');
+    });
     btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
     renderProjects(btn.dataset.category);
+  });
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const dir = e.key === 'ArrowRight' ? 1 : -1;
+      const next = filterButtons[(index + dir + filterButtons.length) % filterButtons.length];
+      next.focus();
+    }
   });
 });
 
@@ -578,28 +782,222 @@ function attachModalButtons() {
       if (!project) return;
 
       modalBody.innerHTML = `
-        <h2>${project.title}</h2>
+        <h2 id="modal-title">${project.title}</h2>
         ${project.date ? `<p class="modal-date">${project.date}</p>` : ''}
-        ${project.video ? `<iframe width="100%" height="400" src="${project.video}" frameborder="0" allowfullscreen></iframe>` : ''}
+        ${project.video ? `<iframe width="100%" height="400" src="${project.video}" frameborder="0" allowfullscreen loading="lazy"></iframe>` : ''}
         <p>${project.description}</p>
         ${project.tools ? `<div class="tags-container"><strong>Tools: </strong>${project.tools.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
         ${project.languages ? `<div class="tags-container"><strong>Languages: </strong>${project.languages.map(l => `<span class="tag">${l}</span>`).join('')}</div>` : ''}
-        ${project.github && !(project.repos && project.repos.some(r => r.url === project.github)) ? `<p><a href="${project.github}" target="_blank" class="btn-primary">GitHub</a></p>` : ''}
-        ${project.slides ? `<p><a href="${project.slides}" target="_blank" class="btn-primary">Slides</a></p>` : ''}
-        ${project.wireframe ? `<p><a href="${project.wireframe}" target="_blank" class="btn-primary">Wireframe</a></p>` : ''}
-        ${project.live ? `<p><a href="${project.live}" target="_blank" class="btn-primary">Live Demo</a></p>` : ''}
-        ${project.projectFiles ? `<p><a href="${project.projectFiles}" target="_blank" class="btn-primary">Project Files</a></p>` : ''}
-        ${project.webfile ? `<p><a href="${project.webfile}" target="_blank" class="btn-primary">Web File</a></p>` : ''}
-        ${project.audio && project.folderLink ? `<p><a href="${project.folderLink}" target="_blank" class="btn-primary">Full Audio Directory</a></p>` : ''}
-        ${project.repos ? `<div style="margin-top:0.75rem;"><strong>Additional Repos:</strong><ul style="list-style:none;padding:0;margin:0.5rem 0 0 0;display:flex;flex-wrap:wrap;gap:0.5rem;">${project.repos.map(r => `<li><a href="${r.url}" target="_blank" class="btn-primary" style="padding:0.4rem 0.7rem;font-size:0.9rem;">${r.label}</a></li>`).join('')}</ul></div>` : ''}
+        ${project.github && !(project.repos && project.repos.some(r => r.url === project.github)) ? `<p><a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn-primary">GitHub</a></p>` : ''}
+        ${project.slides ? `<p><a href="${project.slides}" target="_blank" rel="noopener noreferrer" class="btn-primary">Slides</a></p>` : ''}
+        ${project.wireframe ? `<p><a href="${project.wireframe}" target="_blank" rel="noopener noreferrer" class="btn-primary">Wireframe</a></p>` : ''}
+        ${project.live ? `<p><a href="${project.live}" target="_blank" rel="noopener noreferrer" class="btn-primary">Live Demo</a></p>` : ''}
+        ${project.projectFiles ? `<p><a href="${project.projectFiles}" target="_blank" rel="noopener noreferrer" class="btn-primary">Project Files</a></p>` : ''}
+        ${project.webfile ? `<p><a href="${project.webfile}" target="_blank" rel="noopener noreferrer" class="btn-primary">Web File</a></p>` : ''}
+        ${project.audio && project.folderLink ? `<p><a href="${project.folderLink}" target="_blank" rel="noopener noreferrer" class="btn-primary">Full Audio Directory</a></p>` : ''}
+        ${project.repos ? `<div style="margin-top:0.75rem;"><strong>Additional Repos:</strong><ul style="list-style:none;padding:0;margin:0.5rem 0 0 0;display:flex;flex-wrap:wrap;gap:0.5rem;">${project.repos.map(r => `<li><a href="${r.url}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding:0.4rem 0.7rem;font-size:0.9rem;">${r.label}</a></li>`).join('')}</ul></div>` : ''}
       `;
+      // store element that had focus so we can restore it later
+      modal._previouslyFocused = document.activeElement;
+      modal.setAttribute('aria-hidden', 'false');
       modal.style.display = 'block';
+      // trigger fade-in class and start trapping focus
+      setTimeout(() => {
+        modal.classList.add('show');
+        modal.addEventListener('keydown', trapFocus);
+        modal.focus(); // ensure dialog gets focus
+      }, 10);
     });
   });
 }
 
-closeModal.addEventListener('click', () => modal.style.display = 'none');
-window.addEventListener('click', e => { if (e.target == modal) modal.style.display = 'none'; });
+closeModal.addEventListener('click', () => {
+  closeModalFunc();
+});
+
+function closeModalFunc() {
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
+  // return focus to element that opened modal
+  if (modal._previouslyFocused) modal._previouslyFocused.focus();
+  // wait for fade-out transition then hide
+  setTimeout(() => { modal.style.display = 'none'; }, 400);
+  modal.removeEventListener('keydown', trapFocus);
+}
+
+// handle clicking outside modal earlier
+window.addEventListener('click', e => {
+  if (e.target == modal) {
+    closeModalFunc();
+  }
+});
+
+// general keydown listener for Escape to close
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && modal.style.display === 'block') {
+    closeModalFunc();
+  }
+});
+
+function trapFocus(e) {
+  if (e.key !== 'Tab') return;
+  const focusable = modal.querySelectorAll('a, button, iframe, [tabindex]:not([tabindex="-1"])');
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (e.shiftKey) {
+    if (document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    }
+  } else {
+    if (document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+}
+window.addEventListener('click', e => {
+  if (e.target == modal) {
+    modal.classList.remove('show');
+    setTimeout(() => { modal.style.display = 'none'; }, 400);
+  }
+});
+
+
+/* =========================
+   CUSTOM BASEBALL SCROLLBAR
+========================= */
+function initCustomScrollbar() {
+  // build DOM elements only once
+  customScrollbarScrollbar = document.createElement('div');
+  customScrollbarScrollbar.className = 'custom-scrollbar';
+  customScrollbarTrack = document.createElement('div');
+  customScrollbarTrack.className = 'track';
+  customScrollbarThumb = document.createElement('div');
+  customScrollbarThumb.className = 'thumb';
+  customScrollbarTrack.appendChild(customScrollbarThumb);
+  customScrollbarScrollbar.appendChild(customScrollbarTrack);
+  document.body.appendChild(customScrollbarScrollbar);
+
+  // create section markers based on page sections
+  const sectionMap = [
+    {id: 'home', label: 'HP'},
+    {id: 'about', label: '1B'},
+    {id: 'projects', label: '2B'},
+    {id: 'resume', label: '3B'},
+    {id: 'contact', label: 'HR'}
+  ];
+  customScrollbarMarkers = [];
+  sectionMap.forEach(item => {
+    const el = document.getElementById(item.id);
+    if (el) {
+      const marker = document.createElement('div');
+      marker.className = 'marker';
+      const span = document.createElement('span');
+      span.textContent = item.label;
+      marker.appendChild(span);
+      customScrollbarTrack.appendChild(marker);
+      customScrollbarMarkers.push({el, marker});
+    }
+  });
+
+  let isDragging = false;
+  let startY = 0;
+  let startTopPct = 0;
+
+  function updateMarkers() {
+    const doc = document.documentElement;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    if (scrollHeight <= 0) return;
+    // compute thumb height percentage once since every marker uses it
+    const thumbHeightPct = customScrollbarThumb ? parseFloat(customScrollbarThumb.style.height) : 0;
+
+    customScrollbarMarkers.forEach(({el, marker}) => {
+      if (marker.dataset.locked === 'true') return; // keep position if locked
+      let target = el.offsetTop;
+      target = Math.min(Math.max(target, 0), scrollHeight);
+      const pct = scrollHeight > 0 ? target / scrollHeight : 0;
+      // align marker center with thumb center: thumbTopPct + halfThumbHeightPct
+      let topPct = pct * (100 - thumbHeightPct) + thumbHeightPct / 2;
+      // ensure markers don't get cut off at the very top/bottom; compute
+      // half-marker height in percent of track and clamp accordingly.
+      const trackHeight = customScrollbarTrack.clientHeight || 1;
+      const halfMarkerPct = (marker.offsetHeight / 2) / trackHeight * 100;
+      topPct = Math.min(Math.max(topPct, halfMarkerPct), 100 - halfMarkerPct);
+      marker.style.top = topPct + '%';
+    });
+  }
+
+  function update() {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    if (scrollHeight <= 0) {
+      customScrollbarScrollbar.style.display = 'none';
+      return;
+    } else {
+      customScrollbarScrollbar.style.display = '';
+    }
+    const thumbHeightPct = Math.max((doc.clientHeight / doc.scrollHeight) * 100, 5);
+    customScrollbarThumb.style.height = thumbHeightPct + '%';
+    const topPct = (scrollTop / scrollHeight) * (100 - thumbHeightPct);
+    customScrollbarThumb.style.top = topPct + '%';
+    const angle = (scrollTop / scrollHeight) * 1080; // three full rotations over scroll
+    customScrollbarThumb.style.setProperty('--rotate-angle', angle + 'deg');
+    // reposition section markers
+    updateMarkers();
+  }
+
+  // dragging the thumb
+  customScrollbarTrack.addEventListener('mousedown', e => {
+    if (e.target !== customScrollbarThumb) return; // start only when clicking the ball itself
+    isDragging = true;
+    startY = e.clientY;
+    startTopPct = parseFloat(customScrollbarThumb.style.top) || 0;
+    document.body.classList.add('no-select');
+    e.preventDefault();
+  });
+
+  // clicking the track jumps to that position
+  customScrollbarTrack.addEventListener('click', e => {
+    if (e.target !== customScrollbarTrack) return; // ignore clicks on thumb
+    const rect = customScrollbarTrack.getBoundingClientRect();
+    const clickY = e.clientY - rect.top;
+    const pct = clickY / rect.height;
+    const doc = document.documentElement;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    window.scrollTo({ top: pct * scrollHeight, behavior: 'smooth' });
+  });
+  document.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const delta = e.clientY - startY;
+    const trackHeight = customScrollbarTrack.clientHeight;
+    const pctDelta = (delta / trackHeight) * 100;
+    let newTop = startTopPct + pctDelta;
+    const thumbHeightPct = parseFloat(customScrollbarThumb.style.height);
+    newTop = Math.max(0, Math.min(newTop, 100 - thumbHeightPct));
+    customScrollbarThumb.style.top = newTop + '%';
+    const doc = document.documentElement;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const ratio = newTop / (100 - thumbHeightPct);
+    window.scrollTo(0, ratio * scrollHeight);
+  });
+  document.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      document.body.classList.remove('no-select');
+    }
+  });
+
+  document.addEventListener('scroll', update);
+  window.addEventListener('resize', () => {
+    update();
+    updateMarkers();
+  });
+  update();
+  updateMarkers();
+}
 
 /* =========================
    INITIAL RENDER
