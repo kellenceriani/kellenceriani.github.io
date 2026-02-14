@@ -523,18 +523,36 @@ header .logo {
   align-items: center;
   justify-content: space-between;
   padding: 5rem 0;
-  /* background image spans entire section with gradient tint overlay */
+
+  /* background image with gradient tint */
   background: 
     linear-gradient(135deg, rgba(227,242,253,0.6), rgba(255,255,255,0.6)),
-    url('imgs/wake_up.gif') center/cover no-repeat;
-  position: relative; /* needed for overlay and consistency */
+    url('imgs/wake_up3.gif') center/cover no-repeat;
+
+  position: relative;
   overflow: hidden;
   flex-wrap: wrap;
+
+  /* animation */
+  animation: heroPan 8s ease-in-out infinite alternate;
 }
+
 .dark .hero {
   background: 
     linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url('imgs/wake_up.gif') center/cover no-repeat;
+    url('imgs/wake_up3.gif') center/cover no-repeat;
+
+  animation: heroPan 8s ease-in-out infinite alternate;
+}
+
+/* move background forward → backward */
+@keyframes heroPan {
+  0% {
+    background-position: center top;
+  }
+  100% {
+    background-position: center bottom;
+  }
 }
 
 .hero-text {

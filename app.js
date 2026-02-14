@@ -208,7 +208,8 @@ const projects = [
     tools: ['Visual Studio', 'Unity', 'Maya', 'Substance Painter', 'Oculus'],
     languages: ['C++', 'C#'],
     video: 'https://www.youtube.com/embed/mGSd7ccdzbQ',
-    github: 'https://github.com/kellenceriani/ShootTheRunnerPublic'
+    github: 'https://github.com/kellenceriani/ShootTheRunnerPublic',
+    gameDemo: 'https://youtu.be/QeXn3gjfv9M'
   },
   {
     id: 'balls-unreal',
@@ -646,6 +647,16 @@ function renderProjects(filter = 'all', showAll = false) {
         ghLink.textContent = 'GitHub';
         buttonsDiv.appendChild(ghLink);
       }
+      //unique case for vr-baseball: Additional Game Demo button linking to YouTube video (since the main GitHub repo doesn't have a demo link)
+      if (p.gameDemo) {
+        const demoLink = document.createElement('a');
+        demoLink.href = p.gameDemo;
+        demoLink.target = '_blank';
+        demoLink.rel = 'noopener noreferrer';
+        demoLink.classList.add('btn-primary');
+        demoLink.textContent = 'Game Demo';
+        buttonsDiv.appendChild(demoLink);
+      }
 
       if (p.slides) {
         const slideLink = document.createElement('a');
@@ -788,6 +799,7 @@ function attachModalButtons() {
         <p>${project.description}</p>
         ${project.tools ? `<div class="tags-container"><strong>Tools: </strong>${project.tools.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
         ${project.languages ? `<div class="tags-container"><strong>Languages: </strong>${project.languages.map(l => `<span class="tag">${l}</span>`).join('')}</div>` : ''}
+        ${project.gameDemo ? `<p><a href="${project.gameDemo}" target="_blank" rel="noopener noreferrer" class="btn-primary">Game Demo</a></p>` : ''}
         ${project.github && !(project.repos && project.repos.some(r => r.url === project.github)) ? `<p><a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn-primary">GitHub</a></p>` : ''}
         ${project.slides ? `<p><a href="${project.slides}" target="_blank" rel="noopener noreferrer" class="btn-primary">Slides</a></p>` : ''}
         ${project.wireframe ? `<p><a href="${project.wireframe}" target="_blank" rel="noopener noreferrer" class="btn-primary">Wireframe</a></p>` : ''}
