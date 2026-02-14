@@ -189,39 +189,81 @@ html {
   transform: rotate(-45deg);
 }
 
+/* =========================
+   CARTOON BAT SCROLL THUMB
+========================= */
 
-.custom-scrollbar .thumb {
-  position: absolute;
-  left: 50%;
-  width: 32px;
-  height: 32px;
-  /* rotation is stored in a custom property so other
-     transforms (scale, etc.) can be composed without
-     being overwritten by JS. */
-  transform: translateX(-50%) rotate(var(--rotate-angle,0deg));
-  border-radius: 50%;
-  background: none;
-  font-size: 1.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-thumb-color);
-  box-shadow: 0 0 6px rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: transform 0.15s ease, top 0.15s ease;
+.custom-scrollbar .thumb{
+  position:absolute;
+  left:50%;
+  width:42px;
+  height:150px;
+  transform:translateX(-50%) rotate(var(--rotate-angle,0deg));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  background:none;
+  transition:transform .15s ease, top .15s ease;
+  z-index:0;
+
+  /* smooth taper + round knob */
+  clip-path:polygon(
+    30% 0%,70% 0%,
+    74% 12%,78% 26%,80% 40%,76% 60%,66% 78%,
+    60% 90%,58% 95%,
+    62% 100%,38% 100%,
+    42% 95%,40% 90%,34% 78%,24% 60%,20% 40%,22% 26%,26% 12%
+  );
 }
 
-.custom-scrollbar .thumb::before {
-  content: '⚾';
+/* baseball on top */
+.custom-scrollbar .thumb::before{
+  content:"⚾";
+  font-size:1.6rem;
+  position:relative;
+  z-index:5;
+  pointer-events:none;
 }
 
-/* thumb hover/active states give the ball a little bounce */
-.custom-scrollbar .thumb:hover {
-  transform: translateX(-50%) scale(1.15) rotate(var(--rotate-angle,0deg));
+/* bat wood + grain + gloss */
+.custom-scrollbar .thumb::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  border-radius:20px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.05) 0 3px,
+      rgba(0,0,0,.05) 4px 8px
+    ),
+    linear-gradient(
+      90deg,
+      #7a431c 0%,
+      #b87333 30%,
+      #e0a15d 50%,
+      #b87333 70%,
+      #7a431c 100%
+    );
+
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,.45),
+    inset 0 28px 24px rgba(255,255,255,.25),
+    inset 0 -28px 24px rgba(0,0,0,.45);
 }
-.custom-scrollbar .thumb:active {
-  transform: translateX(-50%) scale(1.1) rotate(var(--rotate-angle,0deg));
+
+/* interaction */
+.custom-scrollbar .thumb:hover{
+  transform:translateX(-50%) scale(1.12) rotate(var(--rotate-angle,0deg));
 }
+.custom-scrollbar .thumb:active{
+  transform:translateX(-50%) scale(1.08) rotate(var(--rotate-angle,0deg));
+}
+
+
 
 /* a small keyframe for continuous rotation when scrolling
    (added/removed by JS depending on scroll velocity) */
