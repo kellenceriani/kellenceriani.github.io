@@ -1,0 +1,534 @@
+/* ==================================================
+   COMPONENTS.CSS
+   Reusable UI Modules & Interactive Systems
+   ================================================== */
+
+
+/* =========================
+   BUTTON SYSTEM
+========================= */
+
+.btn-primary,
+.btn-secondary,
+.btn-modal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+  cursor: pointer;
+  border: none;
+}
+
+/* Primary */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0b3a80;
+}
+
+/* Secondary */
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.btn-secondary:hover {
+  background-color: #e6ac00;
+}
+
+/* Modal utility button */
+.btn-modal {
+  background-color: var(--color-alt-surface);
+  color: var(--color-text);
+  font-size: 1.2rem;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.btn-modal:hover {
+  background-color: #bdbdbd;
+}
+
+
+/* =========================
+   BACK TO TOP BUTTON
+========================= */
+
+#back-to-top {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1500;
+}
+
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* =========================
+   THEME TOGGLE
+========================= */
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text);
+  padding: 0.3rem;
+  transition: color var(--transition-speed) ease;
+}
+
+.theme-toggle:hover {
+  color: var(--color-primary);
+}
+
+
+/* =========================
+   NAV LINK STYLING
+========================= */
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: var(--color-primary);
+}
+
+
+/* =========================
+   HAMBURGER MENU
+========================= */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+/* =========================
+   FILTER BUTTONS
+========================= */
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background: transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease,
+    border-color 0.3s ease;
+}
+
+.filter-btn:hover {
+  transform: scale(1.05);
+}
+
+.filter-btn.active,
+.filter-btn:hover,
+.filter-btn[aria-selected="true"] {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* Dark mode filters */
+.dark .filter-btn {
+  border: 1px solid #eee;
+  background-color: transparent;
+  color: #eee;
+}
+
+.dark .filter-btn:hover,
+.dark .filter-btn:focus {
+  background-color: rgba(255,255,255,0.15);
+}
+
+.dark .filter-btn.active,
+.dark .filter-btn[aria-selected="true"] {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+
+/* =========================
+   TAG SYSTEM
+========================= */
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.tag {
+  padding: 0.3rem 0.6rem;
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid #000;
+}
+
+.dark .tag {
+  border: none;
+}
+
+.modal .tag {
+  border: none;
+}
+
+
+/* =========================
+   SLIDESHOW
+========================= */
+
+.slideshow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.slideshow img.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.slideshow img.slide.active {
+  opacity: 1;
+}
+
+.slideshow-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 5;
+}
+
+.slideshow-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.8);
+  opacity: 0.7;
+}
+
+.slideshow-dots .dot.active {
+  opacity: 1;
+}
+
+
+/* =========================
+   AUDIO THUMB CLUSTER
+========================= */
+
+.project-media .audio-thumb {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.thumb-item {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8a65, #ffb74d);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  margin-left: -18px;
+  border: 3px solid #fff;
+}
+
+.thumb-item:first-child {
+  margin-left: 0;
+}
+
+.thumb-item.playing {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+}
+
+
+/* =========================
+   AUDIO GRID
+========================= */
+
+.audio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.audio-card {
+  background: var(--color-alt-surface);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+
+/* =========================
+   MODAL SYSTEM
+========================= */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  overflow-y: auto;
+  background-color: rgba(0,0,0,0.7);
+  padding: 2rem 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.modal.show {
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: var(--color-surface);
+  margin: 5% auto;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.close-modal:hover {
+  transform: rotate(90deg);
+}
+
+
+/* =========================
+   SEE MORE BUTTON WRAPPER
+========================= */
+
+.see-more-container {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0 3rem 0;
+}
+
+
+/* ==================================================
+   CUSTOM BASEBALL SCROLLBAR SYSTEM
+   (Entire subsystem preserved intact)
+   ================================================== */
+
+.custom-scrollbar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 24px;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2000;
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 600px) {
+  .custom-scrollbar {
+    display: block;
+    pointer-events: auto;
+  }
+}
+
+.custom-scrollbar .track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--color-alt-surface);
+  border-radius: 12px;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.custom-scrollbar .marker {
+  position: absolute;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  background: white;
+  border: 2px solid var(--color-marker-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--color-thumb-color);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.custom-scrollbar .marker span {
+  transform: rotate(-45deg);
+}
+
+.custom-scrollbar .thumb {
+  position: absolute;
+  left: 50%;
+  width: 42px;
+  height: 150px;
+  transform: translateX(-50%) rotate(var(--rotate-angle,0deg));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  transition: transform .15s ease, top .15s ease;
+  z-index: 0;
+
+  clip-path: polygon(
+    30% 0%,70% 0%,
+    74% 12%,78% 26%,80% 40%,76% 60%,66% 78%,
+    60% 90%,58% 95%,
+    62% 100%,38% 100%,
+    42% 95%,40% 90%,34% 78%,24% 60%,20% 40%,22% 26%,26% 12%
+  );
+}
+
+.custom-scrollbar .thumb::before {
+  content: "⚾";
+  font-size: 1.6rem;
+  position: relative;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.custom-scrollbar .thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 20px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.05) 0 3px,
+      rgba(0,0,0,.05) 4px 8px
+    ),
+    linear-gradient(
+      90deg,
+      #7a431c 0%,
+      #b87333 30%,
+      #e0a15d 50%,
+      #b87333 70%,
+      #7a431c 100%
+    );
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,.45),
+    inset 0 28px 24px rgba(255,255,255,.25),
+    inset 0 -28px 24px rgba(0,0,0,.45);
+}
+
+.custom-scrollbar .thumb:hover {
+  transform: translateX(-50%) scale(1.12) rotate(var(--rotate-angle,0deg));
+}
+
+.custom-scrollbar .thumb:active {
+  transform: translateX(-50%) scale(1.08) rotate(var(--rotate-angle,0deg));
+}
+
+@media (prefers-color-scheme: dark) {
+  .custom-scrollbar .track {
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+  }
+}
