@@ -50,7 +50,7 @@ header .logo {
 
   background:
     linear-gradient(135deg, rgba(227,242,253,0.6), rgba(255,255,255,0.6)),
-    url('imgs/wake_up3.gif') center/cover no-repeat;
+    url('../imgs/wake_up3.gif') center/cover no-repeat;
 
   animation: heroPan 8s ease-in-out infinite alternate;
 }
@@ -58,7 +58,7 @@ header .logo {
 .dark .hero {
   background:
     linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url('imgs/wake_up3.gif') center/cover no-repeat;
+    url('../imgs/wake_up3.gif') center/cover no-repeat;
 
   animation: heroPan 8s ease-in-out infinite alternate;
 }

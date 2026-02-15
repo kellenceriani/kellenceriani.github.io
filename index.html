@@ -2,16 +2,16 @@
 <html lang="en" dir="ltr" class="no-js">
 
 <head>
-  <!-- early script sets a helper class so CSS can tell when JS ran -->
+  <!-- Early JS to mark JS enabled -->
   <script>
-    // switch flag immediately; this runs even if external scripts fail
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js-enabled');
   </script>
+
+  <!-- Meta Tags -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>Kellen Ceriani – Portfolio</title>
   <meta name="description" content="Portfolio of Kellen Ceriani - multidisciplinary designer, programmer, and game developer showcasing projects in games, animations, web, and more.">
   <meta name="author" content="Kellen Ceriani">
   <meta property="og:title" content="Kellen Ceriani – Portfolio">
@@ -22,58 +22,58 @@
   <meta name="theme-color" content="#0D47A1">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://kellenceriani.github.io/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="imgs/PortraitCrop.jpg" type="image/jpeg">
 
-<!-- Preload CSS -->
-<link rel="preload" href="css/base.css" as="style">
-<link rel="preload" href="css/components.css" as="style">
-<link rel="preload" href="css/layout.css" as="style">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!-- Google Fonts -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- CSS Preload & Styles -->
+  <link rel="preload" href="css/layout.css" as="style">
+  <link rel="preload" href="css/base.css" as="style">
+  <link rel="preload" href="css/components.css" as="style">
 
-<!-- Styles -->
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- Apply theme early to prevent FOUC -->
   <script>
-    // Immediately apply theme class to avoid flash-of-incorrect-theme
-    (function(){
+    (function () {
       try {
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (stored === 'dark' || (!stored && prefersDark)) {
-          document.documentElement.classList.add('dark');
-        }
-        // also update theme-color meta right away
+        if (stored === 'dark' || (!stored && prefersDark)) document.documentElement.classList.add('dark');
+
         const meta = document.querySelector('meta[name="theme-color"]');
         if (meta) {
-          const style = getComputedStyle(document.documentElement);
-          const bg = style.getPropertyValue('--color-bg').trim();
+          const bg = getComputedStyle(document.documentElement).getPropertyValue('--color-bg').trim();
           if (bg) meta.setAttribute('content', bg);
         }
-      } catch(e) { /* ignore */ }
+      } catch (e) {}
     })();
   </script>
-  <link rel="icon" href="imgs/PortraitCrop.jpg" type="image/jpeg">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <title>Kellen Ceriani – Portfolio</title>
 </head>
 
 <body>
-
-
-  <!-- <a href="#main-content" class="skip-link">Skip to main content</a> -->
-  <noscript><p style="background:#ffc107;color:#000;padding:1rem;text-align:center;">This site works best with JavaScript enabled.</p></noscript>
+  <noscript>
+    <p style="background:#ffc107;color:#000;padding:1rem;text-align:center;">
+      This site works best with JavaScript enabled.
+    </p>
+  </noscript>
 
   <!-- HEADER / NAVIGATION -->
   <header id="header" role="banner">
     <div class="container header-container">
       <div class="logo" tabindex="0">Kellen Ceriani</div>
+
       <nav role="navigation" aria-label="Primary" id="primary-nav">
         <ul class="nav-links">
           <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
@@ -88,145 +88,133 @@
           <span aria-hidden="true"></span>
         </div>
       </nav>
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle dark/light theme"><i class="fas fa-moon"></i></button>
+
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle dark/light theme">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
   </header>
 
   <!-- HERO / HOME -->
   <main id="main-content" role="main">
-  <section id="home" class="hero">
-    <div class="container hero-container">
-      <div class="hero-text">
-        <h1>Kellen Ceriani</h1>
-        <p>Multidisciplinary Designer, Programmer, & Game Developer</p>
-        <div class="hero-buttons">
-          <a href="#projects" class="btn-primary" title="Jump to projects section">View Projects</a>
-          <a href="imgs/Kellen_Ceriani_Resume.pdf" class="btn-secondary" target="_blank" title="Download a PDF version of my resume">Download Resume</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT ME -->
-  <section id="about" class="about">
-    <div class="container section-container">
-      <h2>About Me</h2>
-      <div class="about-content">
-        <div class="about-image">
-          <img src="imgs/PortraitCrop.jpg" alt="Headshot of Kellen Ceriani" loading="lazy">
-        </div>
-        <div class="about-text">
-          <p>I am a multidisciplinary designer, programmer, and game developer with expertise in game development, animation, web design, and multimedia production. My passion lies in crafting innovative, user-centered digital experiences that are both engaging and impactful. I thrive in collaborative environments, enjoy tackling technical challenges, and continuously seek opportunities to integrate art, interactivity, and programming into cohesive experiences.</p>
-          <div class="education">
-            <p><strong>Education:</strong></p>
-            <p>Boise State University</p>
-            <p>Bachelor of Science in GIMM (Games, Interactive Media, and Mobile), Minor in ITM</p>
-            <p>Magna Cum Laude, 3.8 GPA</p>
+    <section id="home" class="hero">
+      <div class="container hero-container">
+        <div class="hero-text">
+          <h1>Kellen Ceriani</h1>
+          <p>Multidisciplinary Designer, Programmer, & Game Developer</p>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn-primary" title="Jump to projects section">View Projects</a>
+            <a href="imgs/Kellen_Ceriani_Resume.pdf" class="btn-secondary" target="_blank" title="Download Resume">Download Resume</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="projects">
-    <div class="container section-container">
-      <h2>Projects</h2>
-
-      <!-- Filter Buttons -->
-      <div class="project-filters" role="tablist" aria-label="Project categories">
-        <button class="filter-btn active" data-category="all" role="tab" aria-selected="true">All</button>
-        <button class="filter-btn" data-category="games" role="tab" aria-selected="false">Games/AR/VR</button>
-        <button class="filter-btn" data-category="animations" role="tab" aria-selected="false">Animations/Art</button>
-        <button class="filter-btn" data-category="web" role="tab" aria-selected="false">Web Development</button>
-        <button class="filter-btn" data-category="misc" role="tab" aria-selected="false">Miscellaneous</button>
+    <!-- ABOUT ME -->
+    <section id="about" class="about">
+      <div class="container section-container">
+        <h2>About Me</h2>
+        <div class="about-content">
+          <div class="about-image">
+            <img src="imgs/PortraitCrop.jpg" alt="Headshot of Kellen Ceriani" loading="lazy">
+          </div>
+          <div class="about-text">
+            <p>I am a multidisciplinary designer, programmer, and game developer with expertise in game development, animation, web design, and multimedia production. I thrive in collaborative environments and continuously seek to integrate art, interactivity, and programming into cohesive experiences.</p>
+            <div class="education">
+              <p><strong>Education:</strong></p>
+              <p>Boise State University</p>
+              <p>Bachelor of Science in GIMM (Games, Interactive Media, and Mobile), Minor in ITM</p>
+              <p>Magna Cum Laude, 3.8 GPA</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- Project Grid -->
-      <div class="project-grid" id="project-grid">
-        <!-- Projects will be populated dynamically via app.js -->
+    <!-- PROJECTS -->
+    <section id="projects" class="projects">
+      <div class="container section-container">
+        <h2>Projects</h2>
+
+        <!-- Filter Buttons -->
+        <div class="project-filters" role="tablist" aria-label="Project categories">
+          <button class="filter-btn active" data-category="all" role="tab" aria-selected="true">All</button>
+          <button class="filter-btn" data-category="games" role="tab" aria-selected="false">Games/AR/VR</button>
+          <button class="filter-btn" data-category="animations" role="tab" aria-selected="false">Animations/Art</button>
+          <button class="filter-btn" data-category="web" role="tab" aria-selected="false">Web Development</button>
+          <button class="filter-btn" data-category="misc" role="tab" aria-selected="false">Miscellaneous</button>
+        </div>
+
+        <!-- Project Grid -->
+        <div class="project-grid" id="project-grid">
+          <!-- Populated via JS -->
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- MODAL FOR PROJECT DETAILS -->
-  <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
-    <div class="modal-content">
-      <span class="close-modal" role="button" aria-label="Close dialog">⚾</span>
-      <div id="modal-body">
-        <!-- Dynamic project content loaded via JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- RESUME SECTION -->
-  <section id="resume" class="resume">
-    <div class="container section-container">
-      <h2>Resume</h2>
-      <a href="imgs/Kellen_Ceriani_Resume.pdf" target="_blank" class="btn-primary">Download Resume</a>
-      <iframe src="imgs/Kellen_Ceriani_Resume.pdf" frameborder="0" class="resume-preview" title="Embedded resume PDF" loading="lazy"></iframe>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section id="contact" class="contact">
-    <div class="container section-container">
-      <h2>Contact & Socials</h2>
-      <p>Email: <a href="mailto:kmceriani@cox.net">kmceriani@cox.net</a></p>
-      <div class="socials">
-        <a href="https://discord.com/users/UserK17#0952" target="_blank" rel="noopener noreferrer" aria-label="Discord">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
-        </a>
-        <a href="https://www.youtube.com/channel/UCQCxwu36mkoBEmh1lN6jz8w" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
-        </a>
-        <a href="https://www.facebook.com/kellen.ceriani.1/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook">
-        </a>
-        <a href="https://www.linkedin.com/in/kellen-ceriani-435974210/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
-        </a>
-        <a href="https://www.instagram.com/kellen_ceriani/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
-        </a>
-        <a href="https://github.com/kellenceriani" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
-        </a>
-        <a href="https://steamcommunity.com/id/kmceriani/" target="_blank" rel="noopener noreferrer" aria-label="Steam">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/steam.svg" alt="Steam">
-        </a>
-        <a href="https://account.xbox.com/en-us/Profile?Gamertag=NachoCheeseBear" target="_blank" rel="noopener noreferrer" aria-label="Xbox">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/xbox.svg" alt="Xbox">
-        </a>
+    <!-- PROJECT MODAL -->
+    <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+      <div class="modal-content">
+        <span class="close-modal" role="button" aria-label="Close dialog">⚾</span>
+        <div id="modal-body">
+          <!-- Dynamic project content loaded via JS -->
+        </div>
       </div>
     </div>
-  </section>
 
-<!-- FOOTER -->
-<footer role="contentinfo">
-  <div class="container footer-container">
-    <p>© Kellen Ceriani 2026</p>
+    <!-- RESUME -->
+    <section id="resume" class="resume">
+      <div class="container section-container">
+        <h2>Resume</h2>
+        <a href="imgs/Kellen_Ceriani_Resume.pdf" target="_blank" class="btn-primary">Download Resume</a>
+        <iframe src="imgs/Kellen_Ceriani_Resume.pdf" frameborder="0" class="resume-preview" title="Embedded resume PDF" loading="lazy"></iframe>
+      </div>
+    </section>
 
-    <ul class="footer-nav">
-      <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="#about"><i class="fas fa-user-tie"></i> About</a></li>
-      <li><a href="#projects"><i class="fas fa-folder-open"></i> Projects</a></li>
-      <li><a href="#resume"><i class="fas fa-file-lines"></i> Resume</a></li>
-      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-    </ul>
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <div class="container section-container">
+        <h2>Contact & Socials</h2>
+        <p>Email: <a href="mailto:kmceriani@cox.net">kmceriani@cox.net</a></p>
+        <div class="socials">
+          <a href="https://discord.com/users/UserK17#0952" target="_blank" rel="noopener noreferrer" aria-label="Discord"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord"></a>
+          <a href="https://www.youtube.com/channel/UCQCxwu36mkoBEmh1lN6jz8w" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube"></a>
+          <a href="https://www.facebook.com/kellen.ceriani.1/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook"></a>
+          <a href="https://www.linkedin.com/in/kellen-ceriani-435974210/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn"></a>
+          <a href="https://www.instagram.com/kellen_ceriani/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram"></a>
+          <a href="https://github.com/kellenceriani" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub"></a>
+          <a href="https://steamcommunity.com/id/kmceriani/" target="_blank" rel="noopener noreferrer" aria-label="Steam"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/steam.svg" alt="Steam"></a>
+          <a href="https://account.xbox.com/en-us/Profile?Gamertag=NachoCheeseBear" target="_blank" rel="noopener noreferrer" aria-label="Xbox"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/xbox.svg" alt="Xbox"></a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <!-- Old Portfolios Section -->
-    <div class="old-portfolios">
-      <h3>Old Portfolios:</h3>
-      <ul>
-        <li><a href="OLD_PORTFOLIO/index.html" target="_blank">Portfolio V.0.5.0</a></li>
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="container footer-container">
+      <p>© Kellen Ceriani 2026</p>
+      <ul class="footer-nav">
+        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fas fa-user-tie"></i> About</a></li>
+        <li><a href="#projects"><i class="fas fa-folder-open"></i> Projects</a></li>
+        <li><a href="#resume"><i class="fas fa-file-lines"></i> Resume</a></li>
+        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
       </ul>
+
+      <div class="old-portfolios">
+        <h3>Old Portfolios:</h3>
+        <ul>
+          <li><a href="OLD_PORTFOLIO/index.html" target="_blank">Portfolio V.0.5.0</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-
+  <!-- BACK TO TOP -->
   <button id="back-to-top" aria-label="Back to top">↑</button>
+
+  <!-- Scripts -->
   <script src="app.js" defer></script>
 </body>
 
