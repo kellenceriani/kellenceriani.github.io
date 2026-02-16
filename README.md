@@ -1,131 +1,358 @@
-# 📌 Portfolio Website — Kellen Ceriani
+# 🧠 Kellen Ceriani
 
-**Repository:** kellenceriani/kellenceriani.github.io
-**Live Site:** *(served via GitHub Pages)*
-**Tech Stack:** HTML5, CSS3, JavaScript (Vanilla)
-**Purpose:** Personal portfolio showcasing design, game development, multimedia projects, and professional experience.
+### Interactive Developer Portfolio
 
----
-
-## 🚀 Overview
-
-This repository contains a **static, responsive personal portfolio website** built without frontend frameworks, tailored to present projects, skills, resume, and contact information. It combines interactive UI behavior (smooth scroll, filtering) with custom UX elements like a themed scrollbar and modal project details.
-
----
-
-## 🎯 Features & Structure
-
-### 🧩 Core Sections
-
-✅ **Hero / About** — Introduces Kellen Ceriani including title and narrative. 
-✅ **Projects Grid** — Categorized projects with filters: *Games, Animations, Web Development, Misc*. 
-✅ **Project Modals** — Clickable cards reveal extended project descriptions + metadata. 
-✅ **Resume** — Embedded preview and downloadable file. 
-✅ **Contact & Socials** — Email + social network links. 
+<p align="center">
+  <a href="https://kellenceriani.github.io">
+    <img src="https://img.shields.io/badge/Live%20Portfolio-Online-111?style=for-the-badge&logo=githubpages&logoColor=white">
+  </a>
+  <img src="https://img.shields.io/badge/Vanilla%20JS-Architecture-black?style=for-the-badge&logo=javascript">
+  <img src="https://img.shields.io/badge/No%20Frameworks-Full%20Control-black?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Status-Actively%20Evolving-0a0a0a?style=for-the-badge">
+</p>
 
 ---
 
-## 🧠 Technical Details
+## ✨ Live Experience
 
-### 📌 Rendering Logic
+**🌐 Site:**
+[https://kellenceriani.github.io](https://kellenceriani.github.io)
 
-All dynamic project rendering and UI interactions are handled in **app.js**:
+This repository powers my fully custom interactive portfolio — designed, coded, and iterated entirely from scratch.
 
-* **Project Definitions:** Projects are data objects with fields like `id`, `category`, `title`, `date`, `description`, `tools`, `languages`, and optional media URLs. 
-* **Render Function:** `renderProjects(filter, showAll)` rebuilds the project grid based on current filter. 
-* **Filtering Mechanism:** Buttons capture category state to filter displayed projects. 
-* **Slideshow Support:** For select projects, a rotating image slideshow is managed via `setInterval` with pause on hover. 
-* **Modal Popup:** A custom modal system displays project details with focus trapping and accessibility support. 
+It is not a template.
+It is not a framework.
+It is not a theme.
 
----
-
-### 🎨 Styles & Theming
-
-All presentation is via **style.css**:
-
-* **CSS Variables:** Central theme colors and typography are defined with CSS variables and adapt to dark mode.
-* **Dark Mode:** Supported via manual toggle and media query (`prefers-color-scheme`). 
-* **Custom Scrollbar:** A bespoke *baseball‑themed* overlay scrollbar with markers and drag‑to‑scroll interactivity. 
-* **Responsive Layout:** Grid and flex layouts adjust across breakpoints without external libraries.
+It is a living system that evolves with my work.
 
 ---
 
-## 🛠️ Installation (Local Development)
+## 🎯 Purpose
 
-> This site is static — no build system or package manager required.
+This portfolio serves as a central hub for:
+
+* Software engineering projects
+* Game development
+* Creative coding
+* UI/UX experiments
+* Audio & multimedia work
+* Personal technical growth
+
+It is intentionally engineered to reflect how I think, build, and design systems.
+
+---
+
+## 🧩 Core Philosophy
+
+**Build everything yourself at least once.**
+
+This site is built using:
+
+* Zero frameworks
+* Zero site builders
+* Zero templates
+
+Why?
+
+Because control → understanding → mastery.
+
+---
+
+## 🖼 Preview
+
+<p align="center">
+  <img src="imgs/1.png" width="800">
+</p>
+
+---
+
+## 🏗 Architecture Deep Dive
+
+### Frontend Stack
+
+| Layer     | Tech               |
+| --------- | ------------------ |
+| Structure | HTML5              |
+| Styling   | Modular CSS        |
+| Logic     | Vanilla JavaScript |
+| Animation | CSS + JS           |
+| Hosting   | GitHub Pages       |
+
+No build step.
+No bundler.
+No dependencies.
+
+Everything is intentional.
+
+---
+
+## 📂 Repository Structure
+
+```
+.
+├── index.html
+├── README.md
+│
+├── css/
+│   ├── base.css
+│   ├── layout.css
+│   ├── components.css
+│   └── aboutAnim.css
+│
+├── JS/
+│   ├── main.js
+│   ├── projects.js
+│   ├── modals.js
+│   └── customscroll.js
+│
+├── imgs/
+├── audio/
+│
+└── OLD_PORTFOLIO/
+```
+
+---
+
+## 🧠 System Design
+
+### Modular CSS Architecture
+
+The styling system is intentionally separated:
+
+* **base.css** → typography, resets
+* **layout.css** → grid + structure
+* **components.css** → reusable UI
+* **aboutAnim.css** → animation logic
+
+This allows:
+
+* Fast iteration
+* Predictable scaling
+* Maintainable styling
+
+---
+
+### JavaScript System
+
+#### `main.js`
+
+Bootstraps the site:
+
+* Event wiring
+* Section control
+* Initialization
+
+#### `projects.js`
+
+Dynamic project system:
+
+* Project data objects
+* Rendering logic
+* Content injection
+
+#### `modals.js`
+
+Custom modal engine:
+
+* Project popups
+* Media loading
+* Interaction logic
+
+#### `customscroll.js`
+
+Scroll behavior system:
+
+* Section snapping
+* Transition effects
+* Controlled navigation
+
+---
+
+## 🎮 Interactive Elements
+
+* Smooth scrolling engine
+* Animated section transitions
+* Modal-based project explorer
+* Embedded media
+* Audio integration
+* Resume viewer
+* Legacy portfolio archive
+
+---
+
+## 🕰 Evolution Included
+
+The repo contains a full archive of my **previous portfolio**.
+
+```
+OLD_PORTFOLIO/
+```
+
+Why keep it?
+
+Because growth is part of the story.
+
+You can see:
+
+* Design evolution
+* Code evolution
+* Skill progression
+
+Most portfolios hide this.
+I keep it visible.
+
+---
+
+## 🚀 Performance Approach
+
+This site prioritizes:
+
+* Lightweight assets
+* No frameworks
+* Minimal JS overhead
+* Fast load times
+* Full control of rendering
+
+Result:
+⚡ Extremely fast GitHub Pages deployment
+⚡ Minimal runtime cost
+⚡ Maximum control
+
+---
+
+## 🧪 Local Development
+
+Clone:
 
 ```bash
-# Clone
 git clone https://github.com/kellenceriani/kellenceriani.github.io.git
-
-# Navigate into project
 cd kellenceriani.github.io
+```
 
-# Open in browser
+Run:
+
+```bash
 open index.html
 ```
 
-Modern development workflows may use a static server for debugging:
+Or:
 
 ```bash
-# Python HTTP server
-python3 -m http.server 8000
+npx serve .
+```
+
+No install required.
+
+---
+
+## 🌍 Deployment
+
+Auto-deploys via **GitHub Pages**
+
+Branch:
+
+```
+main
+```
+
+URL:
+
+```
+https://kellenceriani.github.io
 ```
 
 ---
 
-## 🧪 Key Behaviors & UX
+## 📈 What This Portfolio Demonstrates
 
-### 🏠 Navigation
+### Engineering
 
-* Sticky top navigation with smooth scroll to anchors.
-* Hamburger menu for smaller screens.
-* Active link highlighting based on scroll position. 
+* Clean architecture
+* Vanilla JS mastery
+* DOM systems
+* UI logic design
 
-### 🧪 Accessibility
+### Design
 
-* Keyboard navigable interactive elements.
-* Focus outlines and ARIA states for menus and modals.
-* Skip link support planned (commented in CSS). 
+* Layout systems
+* Interaction design
+* Motion
+* Visual hierarchy
 
-### 🎥 Media Integration
+### Product Thinking
 
-* YouTube embeds for project previews.
-* Image slideshows used where specific media is absent. 
+* Iteration
+* Personal branding
+* UX clarity
+* Narrative structure
 
 ---
 
-## 📁 Repository Layout
+## 🛠 Future Roadmap
+
+* Performance pass
+* Accessibility audit
+* Mobile polish
+* Extra project filtering
+* WebGL experiments
+* Interactive demos
+* Blog/devlog section
+
+---
+
+## 📄 Resume
+
+Located in:
 
 ```
-/
-├── index.html         # Main entry point
-├── app.js             # UI logic & rendering
-├── style.css          # Theming and layout
-├── imgs/              # Static image assets
-├── audio/             # Audio media
-├── OLD_PORTFOLIO/     # Legacy content
+/imgs/Kellen_Ceriani_Resume.pdf
 ```
 
 ---
 
-## 🧩 Contributing
+## 🧑‍💻 About Me
 
-This is a personal repository. Please follow **standard GitHub practices**:
+I build interactive systems at the intersection of:
 
-1. Fork the repo.
-2. Create a feature branch: `feat/your-feature`.
-3. Commit with clear messages.
-4. Submit a pull request with context.
+* Software engineering
+* creative coding
+* game development
+* design
+* multimedia
 
----
-
-## 📄 License
-
-This repository does not include an explicit open‑source license file.
+This portfolio is a long-term evolving artifact of that work.
 
 ---
 
-## 💡 Notes
-* Designed to be **deployable on GitHub Pages with zero configuration**.
+## ⭐ If this repo helped or inspired you
 
+Star it.
+It helps more than you think.
+
+---
+
+## 🤝 Contact
+
+GitHub: [https://github.com/kellenceriani](https://github.com/kellenceriani)
+Portfolio: [https://kellenceriani.github.io](https://kellenceriani.github.io)
+
+---
+
+# 🧬 Final Note
+
+This repository is not just a website.
+
+It is:
+
+* a sandbox
+* a lab
+* a timeline
+* a playground
+* a record of growth
+
+Every version is a snapshot of where I was as a developer.
+
+And it will keep evolving.
+
+---
