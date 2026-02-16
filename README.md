@@ -1,7 +1,4 @@
-# 🧠 Kellen Ceriani
-
-### Interactive Developer Portfolio
-
+# 🌐 Kellen Ceriani — Interactive Portfolio
 <p align="center">
   <a href="https://kellenceriani.github.io">
     <img src="https://img.shields.io/badge/Live%20Portfolio-Online-111?style=for-the-badge&logo=githubpages&logoColor=white">
@@ -10,84 +7,113 @@
   <img src="https://img.shields.io/badge/No%20Frameworks-Full%20Control-black?style=for-the-badge">
   <img src="https://img.shields.io/badge/Status-Actively%20Evolving-0a0a0a?style=for-the-badge">
 </p>
+> Personal developer portfolio built with vanilla HTML, CSS, and JavaScript.
+> Showcasing web projects, game work, design, music, and interactive experiments.
 
 ---
 
-## ✨ Live Experience
+## 🚀 Live Site
 
-**🌐 Site:**
+**🔗 Portfolio:**
 [https://kellenceriani.github.io](https://kellenceriani.github.io)
 
-This repository powers my fully custom interactive portfolio — designed, coded, and iterated entirely from scratch.
-
-It is not a template.
-It is not a framework.
-It is not a theme.
-
-It is a living system that evolves with my work.
+*(Automatically deployed via GitHub Pages)*
 
 ---
 
-## 🎯 Purpose
+## 📸 Preview
 
-This portfolio serves as a central hub for:
+![Portfolio Preview](imgs/1.png)
 
-* Software engineering projects
+---
+
+## 🧭 Overview
+
+This repository contains the source code for my personal portfolio website.
+It functions as a central hub for my work across:
+
+* Web development
 * Game development
+* Interactive media
+* Animation
+* Music composition
+* UI/UX design
+
+The site is designed to be:
+
+* Lightweight
+* Fast
+* Fully custom
+* Framework-free
+* Easy to iterate
+* Highly interactive
+
+It also includes an archived version of my previous portfolio for historical reference.
+
+---
+
+## ✨ Key Features
+
+### 🎨 Interactive UI
+
+* Custom scrolling behavior
+* Modal-based project viewing
+* Animated sections
+* Smooth transitions
+* Audio integration
+
+### 🧩 Modular JavaScript
+
+* Project rendering system
+* Modal manager
+* Custom scroll handler
+* Reusable UI logic
+
+### 📁 Portfolio Content
+
+* Web projects
+* Games
 * Creative coding
-* UI/UX experiments
-* Audio & multimedia work
-* Personal technical growth
+* Music
+* Resume
+* Legacy portfolio archive
 
-It is intentionally engineered to reflect how I think, build, and design systems.
+### 🗂 Version history included
 
----
+The repo contains:
 
-## 🧩 Core Philosophy
-
-**Build everything yourself at least once.**
-
-This site is built using:
-
-* Zero frameworks
-* Zero site builders
-* Zero templates
-
-Why?
-
-Because control → understanding → mastery.
+* Current portfolio (active)
+* Old portfolio (archived but preserved)
 
 ---
 
-## 🖼 Preview
+## 🏗 Tech Stack
 
-<p align="center">
-  <img src="imgs/1.png" width="800">
-</p>
+**Core**
 
----
+* HTML5
+* CSS3
+* Vanilla JavaScript
 
-## 🏗 Architecture Deep Dive
+**Design**
 
-### Frontend Stack
+* Custom CSS architecture
+* Component-based styling
+* Layout + animation separation
 
-| Layer     | Tech               |
-| --------- | ------------------ |
-| Structure | HTML5              |
-| Styling   | Modular CSS        |
-| Logic     | Vanilla JavaScript |
-| Animation | CSS + JS           |
-| Hosting   | GitHub Pages       |
+**Media**
 
-No build step.
-No bundler.
-No dependencies.
+* Audio integration
+* GIF animations
+* PDF resume embedding
 
-Everything is intentional.
+**Hosting**
+
+* GitHub Pages
 
 ---
 
-## 📂 Repository Structure
+## 📂 Project Structure
 
 ```
 .
@@ -110,145 +136,121 @@ Everything is intentional.
 ├── audio/
 │
 └── OLD_PORTFOLIO/
+    ├── index.html
+    ├── style.css
+    ├── wheel.js
+    └── ...
 ```
 
 ---
 
-## 🧠 System Design
+## 🧠 Architecture Notes
 
-### Modular CSS Architecture
+### Layout System
 
-The styling system is intentionally separated:
+CSS is split into:
 
-* **base.css** → typography, resets
-* **layout.css** → grid + structure
-* **components.css** → reusable UI
-* **aboutAnim.css** → animation logic
+| File           | Purpose             |
+| -------------- | ------------------- |
+| base.css       | resets + typography |
+| layout.css     | grid & structure    |
+| components.css | reusable UI         |
+| aboutAnim.css  | animations          |
 
-This allows:
-
-* Fast iteration
-* Predictable scaling
-* Maintainable styling
+This separation keeps styling scalable and maintainable.
 
 ---
 
-### JavaScript System
+### JavaScript Modules
 
-#### `main.js`
+**main.js**
 
-Bootstraps the site:
-
-* Event wiring
-* Section control
+* Entry logic
+* Event listeners
 * Initialization
 
-#### `projects.js`
+**projects.js**
 
-Dynamic project system:
-
-* Project data objects
+* Project data
 * Rendering logic
-* Content injection
+* Dynamic project population
 
-#### `modals.js`
+**modals.js**
 
-Custom modal engine:
+* Modal window system
+* Project detail popups
+* Media handling
 
-* Project popups
-* Media loading
-* Interaction logic
+**customscroll.js**
 
-#### `customscroll.js`
-
-Scroll behavior system:
-
-* Section snapping
-* Transition effects
-* Controlled navigation
+* Scroll animation behavior
+* Section transitions
 
 ---
 
-## 🎮 Interactive Elements
+### Design Philosophy
 
-* Smooth scrolling engine
-* Animated section transitions
-* Modal-based project explorer
-* Embedded media
-* Audio integration
-* Resume viewer
-* Legacy portfolio archive
+The site intentionally avoids heavy frameworks.
+
+Reasons:
+
+* Full control
+* Performance
+* Simplicity
+* Educational value
+* Long-term maintainability
 
 ---
 
-## 🕰 Evolution Included
+## 🕰 Legacy Portfolio
 
-The repo contains a full archive of my **previous portfolio**.
+Located in:
 
 ```
 OLD_PORTFOLIO/
 ```
 
-Why keep it?
+Contains:
 
-Because growth is part of the story.
+* Previous design iterations
+* Archived projects
+* Older UI experiments
+* Audio and animation work
 
-You can see:
+This is preserved for:
 
-* Design evolution
-* Code evolution
-* Skill progression
-
-Most portfolios hide this.
-I keep it visible.
-
----
-
-## 🚀 Performance Approach
-
-This site prioritizes:
-
-* Lightweight assets
-* No frameworks
-* Minimal JS overhead
-* Fast load times
-* Full control of rendering
-
-Result:
-⚡ Extremely fast GitHub Pages deployment
-⚡ Minimal runtime cost
-⚡ Maximum control
+* Historical reference
+* Evolution tracking
+* Nostalgia 🙂
 
 ---
 
 ## 🧪 Local Development
 
-Clone:
+Clone the repo:
 
 ```bash
 git clone https://github.com/kellenceriani/kellenceriani.github.io.git
 cd kellenceriani.github.io
 ```
 
-Run:
+Run locally:
 
 ```bash
 open index.html
 ```
 
-Or:
+Or use a dev server:
 
 ```bash
 npx serve .
 ```
 
-No install required.
-
 ---
 
-## 🌍 Deployment
+## 🚀 Deployment
 
-Auto-deploys via **GitHub Pages**
+This site deploys automatically via **GitHub Pages**.
 
 Branch:
 
@@ -262,48 +264,25 @@ URL:
 https://kellenceriani.github.io
 ```
 
----
-
-## 📈 What This Portfolio Demonstrates
-
-### Engineering
-
-* Clean architecture
-* Vanilla JS mastery
-* DOM systems
-* UI logic design
-
-### Design
-
-* Layout systems
-* Interaction design
-* Motion
-* Visual hierarchy
-
-### Product Thinking
-
-* Iteration
-* Personal branding
-* UX clarity
-* Narrative structure
+No build step required.
 
 ---
 
-## 🛠 Future Roadmap
+## 🎯 Future Improvements
 
-* Performance pass
-* Accessibility audit
-* Mobile polish
-* Extra project filtering
-* WebGL experiments
-* Interactive demos
-* Blog/devlog section
+* Accessibility improvements
+* Mobile UX refinements
+* Dark mode
+* Project filtering system
+* Performance optimization
+* Lazy loading assets
+* More interactive demos
 
 ---
 
 ## 📄 Resume
 
-Located in:
+Available in:
 
 ```
 /imgs/Kellen_Ceriani_Resume.pdf
@@ -311,48 +290,60 @@ Located in:
 
 ---
 
-## 🧑‍💻 About Me
+## 🛠 Design Goals
 
-I build interactive systems at the intersection of:
-
-* Software engineering
-* creative coding
-* game development
-* design
-* multimedia
-
-This portfolio is a long-term evolving artifact of that work.
+* Clean
+* Interactive
+* Fast
+* Memorable
+* Personal
+* Framework-light
+* Recruiter-friendly
 
 ---
 
-## ⭐ If this repo helped or inspired you
+## 🤝 Contributing
 
-Star it.
-It helps more than you think.
+This is a personal portfolio, but feedback is always welcome.
+
+Open an issue for:
+
+* Bugs
+* Suggestions
+* Improvements
+* Accessibility ideas
 
 ---
 
-## 🤝 Contact
+## 📜 License
 
+MIT — feel free to learn from or reference the structure.
+
+---
+
+## 👋 About Me
+
+Developer focused on:
+
+* Interactive web
+* Games
+* Creative tech
+* UI/UX
+* Multimedia experiences
+
+This portfolio evolves as I do.
+
+---
+
+## ⭐ If you like this project
+
+Star the repo — it helps more than you think.
+
+---
+
+## 🧩 Maintained by
+
+**Kellen Ceriani**
 GitHub: [https://github.com/kellenceriani](https://github.com/kellenceriani)
-Portfolio: [https://kellenceriani.github.io](https://kellenceriani.github.io)
-
----
-
-# 🧬 Final Note
-
-This repository is not just a website.
-
-It is:
-
-* a sandbox
-* a lab
-* a timeline
-* a playground
-* a record of growth
-
-Every version is a snapshot of where I was as a developer.
-
-And it will keep evolving.
 
 ---
