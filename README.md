@@ -21,12 +21,6 @@
 
 ---
 
-## 📸 Preview
-
-![Portfolio Preview](imgs/1.png)
-
----
-
 ## 🧭 Overview
 
 This repository contains the source code for my personal portfolio website.
