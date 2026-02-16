@@ -12,10 +12,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Portfolio of Kellen Ceriani - multidisciplinary designer, programmer, and game developer showcasing projects in games, animations, web, and more.">
+  <meta name="description"
+    content="Portfolio of Kellen Ceriani - multidisciplinary designer, programmer, and game developer showcasing projects in games, animations, web, and more.">
   <meta name="author" content="Kellen Ceriani">
   <meta property="og:title" content="Kellen Ceriani – Portfolio">
-  <meta property="og:description" content="Explore the work of a multidisciplinary designer, programmer, and game developer.">
+  <meta property="og:description"
+    content="Explore the work of a multidisciplinary designer, programmer, and game developer.">
   <meta property="og:image" content="imgs/PortraitCrop.jpg">
   <meta property="og:url" content="https://kellenceriani.github.io/">
   <meta name="twitter:card" content="summary_large_image">
@@ -34,10 +36,12 @@
   <link rel="preload" href="css/layout.css" as="style">
   <link rel="preload" href="css/base.css" as="style">
   <link rel="preload" href="css/components.css" as="style">
+  <link rel="preload" href="css/aboutAnim.css" as="style">
 
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/aboutAnim.css">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -55,7 +59,7 @@
           const bg = getComputedStyle(document.documentElement).getPropertyValue('--color-bg').trim();
           if (bg) meta.setAttribute('content', bg);
         }
-      } catch (e) {}
+      } catch (e) { }
     })();
   </script>
 
@@ -82,14 +86,16 @@
           <li><a href="#resume"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a></li>
           <li><a href="#contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
         </ul>
-        <div class="hamburger" role="button" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false" tabindex="0">
+        <div class="hamburger" role="button" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false"
+          tabindex="0">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </div>
       </nav>
 
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle dark/light theme">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme"
+        title="Toggle dark/light theme">
         <i class="fas fa-moon"></i>
       </button>
     </div>
@@ -104,7 +110,8 @@
           <p>Multidisciplinary Designer, Programmer, & Game Developer</p>
           <div class="hero-buttons">
             <a href="#projects" class="btn-primary" title="Jump to projects section">View Projects</a>
-            <a href="imgs/Kellen_Ceriani_Resume.pdf" class="btn-secondary" target="_blank" title="Download Resume">Download Resume</a>
+            <a href="imgs/Kellen_Ceriani_Resume.pdf" class="btn-secondary" target="_blank"
+              title="Download Resume">Download Resume</a>
           </div>
         </div>
       </div>
@@ -119,13 +126,36 @@
             <img src="imgs/PortraitCrop.jpg" alt="Headshot of Kellen Ceriani" loading="lazy">
           </div>
           <div class="about-text">
-            <p>I am a multidisciplinary designer, programmer, and game developer with expertise in game development, animation, web design, and multimedia production. I thrive in collaborative environments and continuously seek to integrate art, interactivity, and programming into cohesive experiences.</p>
-            <div class="education">
-              <p><strong>Education:</strong></p>
+            <p>I am a multidisciplinary designer, programmer, and game developer with expertise in game development,
+              animation, web design, and multimedia production. I thrive in collaborative environments and continuously
+              seek to integrate art, interactivity, and programming into cohesive experiences.</p>
+            <div class="education" id="education-card" tabindex="0">
+              <h3>Education:</h3>
               <p>Boise State University</p>
-              <p>Bachelor of Science in GIMM (Games, Interactive Media, and Mobile), Minor in ITM</p>
+
+              <p>
+                Bachelor of Science in
+                <span class="gimm-wrapper">
+                  <span class="gimm">GIMM</span>
+                  <span class="gimm-full">Games, Interactive Media, and Mobile</span>
+                </span>,
+                Minor in ITM
+              </p>
+
               <p>Magna Cum Laude, 3.8 GPA</p>
+              <p class="transcript-hint"><strong>Click to view transcript</strong></p>
             </div>
+
+            <!-- Transcript panel -->
+            <div class="transcript-panel" id="transcript-panel" aria-hidden="true">
+              <div class="transcript-inner">
+                <button class="close-transcript" id="close-transcript">Close ✕</button>
+
+                <iframe src="imgs/BSR_TRAN_UNO.pdf" title="Transcript" loading="lazy">
+                </iframe>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -167,7 +197,8 @@
       <div class="container section-container">
         <h2>Resume</h2>
         <a href="imgs/Kellen_Ceriani_Resume.pdf" target="_blank" class="btn-primary">Download Resume</a>
-        <iframe src="imgs/Kellen_Ceriani_Resume.pdf" frameborder="0" class="resume-preview" title="Embedded resume PDF" loading="lazy"></iframe>
+        <iframe src="imgs/Kellen_Ceriani_Resume.pdf" frameborder="0" class="resume-preview" title="Embedded resume PDF"
+          loading="lazy"></iframe>
       </div>
     </section>
 
@@ -177,14 +208,28 @@
         <h2>Contact & Socials</h2>
         <p>Email: <a href="mailto:kmceriani@cox.net">kmceriani@cox.net</a></p>
         <div class="socials">
-          <a href="https://discord.com/users/UserK17#0952" target="_blank" rel="noopener noreferrer" aria-label="Discord"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord"></a>
-          <a href="https://www.youtube.com/channel/UCQCxwu36mkoBEmh1lN6jz8w" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube"></a>
-          <a href="https://www.facebook.com/kellen.ceriani.1/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook"></a>
-          <a href="https://www.linkedin.com/in/kellen-ceriani-435974210/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn"></a>
-          <a href="https://www.instagram.com/kellen_ceriani/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram"></a>
-          <a href="https://github.com/kellenceriani" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub"></a>
-          <a href="https://steamcommunity.com/id/kmceriani/" target="_blank" rel="noopener noreferrer" aria-label="Steam"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/steam.svg" alt="Steam"></a>
-          <a href="https://account.xbox.com/en-us/Profile?Gamertag=NachoCheeseBear" target="_blank" rel="noopener noreferrer" aria-label="Xbox"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/xbox.svg" alt="Xbox"></a>
+          <a href="https://discord.com/users/UserK17#0952" target="_blank" rel="noopener noreferrer"
+            aria-label="Discord"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg"
+              alt="Discord"></a>
+          <a href="https://www.youtube.com/channel/UCQCxwu36mkoBEmh1lN6jz8w" target="_blank" rel="noopener noreferrer"
+            aria-label="YouTube"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg"
+              alt="YouTube"></a>
+          <a href="https://www.facebook.com/kellen.ceriani.1/" target="_blank" rel="noopener noreferrer"
+            aria-label="Facebook"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg"
+              alt="Facebook"></a>
+          <a href="https://www.linkedin.com/in/kellen-ceriani-435974210/" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"
+              alt="LinkedIn"></a>
+          <a href="https://www.instagram.com/kellen_ceriani/" target="_blank" rel="noopener noreferrer"
+            aria-label="Instagram"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"
+              alt="Instagram"></a>
+          <a href="https://github.com/kellenceriani" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img
+              src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub"></a>
+          <a href="https://steamcommunity.com/id/kmceriani/" target="_blank" rel="noopener noreferrer"
+            aria-label="Steam"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/steam.svg" alt="Steam"></a>
+          <a href="https://account.xbox.com/en-us/Profile?Gamertag=NachoCheeseBear" target="_blank"
+            rel="noopener noreferrer" aria-label="Xbox"><img
+              src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/xbox.svg" alt="Xbox"></a>
         </div>
       </div>
     </section>
@@ -216,6 +261,36 @@
 
   <!-- Scripts -->
   <script src="app.js" defer></script>
+  <!-- Transcript Panel Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const card = document.getElementById("education-card");
+      const panel = document.getElementById("transcript-panel");
+      const closeBtn = document.getElementById("close-transcript");
+
+      function openPanel() {
+        panel.classList.add("open");
+        panel.setAttribute("aria-hidden", "false");
+      }
+
+      function closePanel() {
+        panel.classList.remove("open");
+        panel.setAttribute("aria-hidden", "true");
+      }
+
+      card.addEventListener("click", openPanel);
+      card.addEventListener("keypress", e => {
+        if (e.key === "Enter") openPanel();
+      });
+
+      closeBtn.addEventListener("click", closePanel);
+
+      panel.addEventListener("click", e => {
+        if (e.target === panel) closePanel();
+      });
+    });
+  </script>
+
 </body>
 
 </html>

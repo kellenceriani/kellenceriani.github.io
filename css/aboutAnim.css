@@ -1,0 +1,341 @@
+/* =====================================================
+   ABOUT SECTION — PREMIUM MICRO-INTERACTION STYLES
+   Dark-mode tuned version
+   ===================================================== */
+
+:root {
+  --about-accent: #0D47A1;
+  --about-soft: rgba(13,71,161,0.08);
+  --about-border: rgba(0,0,0,0.08);
+  --about-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  --about-shadow-hover: 0 28px 60px rgba(0,0,0,0.12);
+}
+
+/* -----------------------------------------
+   DARK MODE VARIABLES
+----------------------------------------- */
+html.dark {
+  --about-soft: rgba(80,140,255,0.08);
+  --about-border: rgba(255,255,255,0.08);
+  --about-shadow: 0 20px 40px rgba(0,0,0,0.45);
+  --about-shadow-hover: 0 30px 70px rgba(0,0,0,0.65);
+}
+
+/* -----------------------------------------
+   SECTION BACKGROUND DEPTH
+----------------------------------------- */
+.about {
+  position: relative;
+  overflow: hidden;
+}
+
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, var(--about-soft), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(0,0,0,0.03), transparent 45%);
+  pointer-events: none;
+}
+
+html.dark .about::before {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(80,140,255,0.06), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(255,255,255,0.03), transparent 50%);
+}
+
+/* -----------------------------------------
+   HEADING
+----------------------------------------- */
+.about h2 {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.about h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 40%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--about-accent), transparent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: aboutLineReveal 0.9s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* -----------------------------------------
+   MAIN CONTENT CARD
+----------------------------------------- */
+.about-content {
+  position: relative;
+  padding: 2rem;
+  border-radius: 18px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.7),
+    rgba(255,255,255,0.35)
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--about-border);
+  box-shadow: var(--about-shadow);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+html.dark .about-content {
+  background: linear-gradient(
+    to bottom,
+    rgba(30,30,35,0.75),
+    rgba(30,30,35,0.55)
+  );
+}
+
+/* subtle lift */
+.about-content:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--about-shadow-hover);
+}
+
+/* -----------------------------------------
+   IMAGE
+----------------------------------------- */
+.about-image img {
+  border-radius: 14px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  box-shadow:
+    0 10px 20px rgba(0,0,0,0.08),
+    0 0 0 1px rgba(255,255,255,0.4) inset;
+}
+
+html.dark .about-image img {
+  box-shadow:
+    0 20px 35px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.05) inset;
+}
+
+.about-image:hover img {
+  transform: scale(1.03);
+}
+
+/* -----------------------------------------
+   TEXT READABILITY
+----------------------------------------- */
+.about-text p {
+  transition: color 0.3s ease;
+}
+
+/* light mode */
+.about-text {
+  color: var(--color-secondary-text);
+}
+
+/* dark mode readable */
+html.dark .about-text {
+  color: rgba(230,230,235,0.92);
+}
+
+html.dark .about-text p {
+  color: rgba(220,220,230,0.88);
+}
+
+/* lead paragraph emphasis */
+.about-text p:first-child {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+/* -----------------------------------------
+   EDUCATION CARD
+----------------------------------------- */
+.education {
+  margin-top: 1.6rem;
+  padding: 1.2rem 1.3rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid var(--about-border);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+html.dark .education {
+  background: rgba(40,40,46,0.8);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.55);
+}
+
+.education::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--about-accent);
+  opacity: 0.75;
+}
+
+.education:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 30px rgba(0,0,0,0.1);
+}
+
+html.dark .education:hover {
+  box-shadow: 0 25px 40px rgba(0,0,0,0.6);
+}
+
+/* -----------------------------------------
+   ENTRANCE ANIMATION
+----------------------------------------- */
+.js-enabled .about-content {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: aboutFadeUp 0.8s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay: 0.15s;
+}
+
+@keyframes aboutFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aboutLineReveal {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* =========================
+   TRANSCRIPT PANEL
+========================= */
+
+.transcript-panel {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+
+.transcript-panel.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.transcript-inner {
+  width: min(900px, 92vw);
+  height: min(90vh, 900px);
+  background: var(--color-surface);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+  transform: translateY(30px) scale(.96);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+}
+
+.transcript-panel.open .transcript-inner {
+  transform: translateY(0) scale(1);
+}
+
+.transcript-inner iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.close-transcript {
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  background: rgba(0,0,0,.6);
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+/* =========================
+   GIMM HOVER REVEAL
+========================= */
+
+.gimm-wrapper {
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  color: var(--about-accent);
+  cursor: default;
+}
+
+.gimm-full {
+  position: absolute;
+  left: 50%;
+  top: 130%;
+  transform: translateX(-50%) translateY(10px);
+  background: linear-gradient(135deg,#0D47A1,#1976D2);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: .8rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  transition: all .35s cubic-bezier(.2,.8,.2,1);
+}
+
+.gimm-wrapper:hover .gimm-full {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* glow on hover */
+.gimm-wrapper:hover .gimm {
+  text-shadow: 0 0 12px rgba(13,71,161,.6);
+}
+
+
+/* -----------------------------------------
+   RESPONSIVE
+----------------------------------------- */
+@media (max-width: 900px) {
+  .about-content {
+    padding: 1.5rem;
+  }
+
+  .about h2::after {
+    width: 55%;
+  }
+}
+
+/* -----------------------------------------
+   REDUCED MOTION
+----------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .about-content,
+  .about-image img,
+  .education {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .about h2::after {
+    transform: scaleX(1);
+  }
+}
+
