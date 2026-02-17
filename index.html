@@ -76,7 +76,10 @@
   <!-- HEADER / NAVIGATION -->
   <header id="header" role="banner">
     <div class="container header-container">
-      <div class="logo" tabindex="0">Kellen Ceriani</div>
+      <div class="logo-group">
+        <a class="logo" href="#home" aria-label="Kellen Ceriani, back to top">Kellen Ceriani</a>
+        <span class="logo-sub">Designer / Developer / Game Dev</span>
+      </div>
 
       <nav role="navigation" aria-label="Primary" id="primary-nav">
         <ul class="nav-links">
@@ -86,18 +89,19 @@
           <li><a href="#resume"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a></li>
           <li><a href="#contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
         </ul>
-        <div class="hamburger" role="button" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false"
-          tabindex="0">
+        <button class="hamburger" type="button" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </div>
+        </button>
       </nav>
 
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme"
-        title="Toggle dark/light theme">
-        <i class="fas fa-moon"></i>
-      </button>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme"
+          title="Toggle dark/light theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -106,14 +110,37 @@
     <section id="home" class="hero">
       <div class="container hero-container">
         <div class="hero-text">
+          <div class="hero-kicker">Portfolio · Boise, ID</div>
           <h1>Kellen Ceriani</h1>
-          <p>Multidisciplinary Designer, Programmer, & Game Developer</p>
+          <p class="hero-role">Multidisciplinary Designer, Programmer, & Game Developer</p>
+          <p class="hero-lede">Designing interactive systems that blend story, code, and motion with a production-ready mindset.</p>
+          <div class="hero-meta">
+            <span class="hero-pill">Open to 2026 roles</span>
+            <span class="hero-pill">Games · Web · Motion</span>
+          </div>
           <div class="hero-buttons">
             <a href="#projects" class="btn-primary" title="Jump to projects section">View Projects</a>
             <a href="imgs/Kellen_Ceriani_Resume.pdf" class="btn-secondary" target="_blank"
               title="Download Resume">Download Resume</a>
           </div>
+          <div class="hero-stats" aria-label="Highlights">
+            <div class="hero-stat">
+              <span class="stat-value">20+</span>
+              <span class="stat-label">Projects shipped</span>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-value">6+</span>
+              <span class="stat-label">Years building</span>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-value">3.8</span>
+              <span class="stat-label">GPA · Magna Cum Laude</span>
+            </div>
+          </div>
         </div>
+        <button class="hero-details-toggle" type="button" aria-expanded="false" aria-label="Show hero details">
+          Details
+        </button>
       </div>
     </section>
 
@@ -166,13 +193,22 @@
       <div class="container section-container">
         <h2>Projects</h2>
 
-        <!-- Filter Buttons -->
-        <div class="project-filters" role="tablist" aria-label="Project categories">
-          <button class="filter-btn active" data-category="all" role="tab" aria-selected="true">All</button>
-          <button class="filter-btn" data-category="games" role="tab" aria-selected="false">Games/AR/VR</button>
-          <button class="filter-btn" data-category="animations" role="tab" aria-selected="false">Animations/Art</button>
-          <button class="filter-btn" data-category="web" role="tab" aria-selected="false">Web Development</button>
-          <button class="filter-btn" data-category="misc" role="tab" aria-selected="false">Miscellaneous</button>
+        <div class="project-controls">
+          <!-- Filter Buttons -->
+          <div class="project-filters" role="tablist" aria-label="Project categories">
+            <button class="filter-btn active" data-category="all" role="tab" aria-selected="true">All</button>
+            <button class="filter-btn" data-category="games" role="tab" aria-selected="false">Games/AR/VR</button>
+            <button class="filter-btn" data-category="animations" role="tab" aria-selected="false">Animations/Art</button>
+            <button class="filter-btn" data-category="web" role="tab" aria-selected="false">Web Development</button>
+            <button class="filter-btn" data-category="misc" role="tab" aria-selected="false">Miscellaneous</button>
+          </div>
+
+          <button id="tag-visibility-toggle" class="tag-toggle is-on" type="button" aria-pressed="true"
+            aria-label="Hide tools and languages on project cards">
+            <span class="tag-toggle__label">Tools & Lang</span>
+            <span class="tag-toggle__switch" aria-hidden="true"></span>
+            <span class="tag-toggle__state" aria-hidden="true">On</span>
+          </button>
         </div>
 
         <!-- Project Grid -->

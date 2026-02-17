@@ -12,6 +12,13 @@ window.App = window.App || {};
       title: 'VR Baseball – Shoot the Runner!',
       date: '2021-2025',
       description: `In this Unity VR game, players stand on a baseball field, following a wall of instructions as runners spawn. Using a gun, the objective is to stop the runners before they advance to the next base. Key highlight: unique grab interaction mechanic. Future enhancements include dynamic music, improved UI, and additional levels.`,
+      impact: {
+        role: 'Gameplay + interaction programming, 3D asset integration',
+        outcome: 'Playable VR loop with grab mechanic and scoring flow',
+        metrics: 'Demo-ready build across multi-year iterations',
+        scope: 'Solo/lead dev across Unity, art, and UI',
+        validation: 'Video demo + public repo'
+      },
       tools: ['Visual Studio', 'Unity', 'Maya', 'Substance Painter', 'Oculus'],
       languages: ['C++', 'C#'],
       video: 'https://www.youtube.com/embed/mGSd7ccdzbQ',
@@ -24,6 +31,13 @@ window.App = window.App || {};
       title: 'Balls Unreal Game',
       date: '2024-2025',
       description: `A fast-paced, two-player competitive party game inspired by WarioWare. Players engage in sumo battles, obstacle races, and survival challenges. Features inclusive controller setup and rapid prototyping.`,
+      impact: {
+        role: 'Gameplay prototyping + controller integration',
+        outcome: 'Playable party-game suite with multi-mode flow',
+        metrics: 'Prototype covering multiple competitive challenges',
+        scope: 'Team project with rapid iteration',
+        validation: 'Gameplay video + presentation slides'
+      },
       tools: ['Arduino', 'Unreal Engine'],
       languages: ['C', 'C++', 'C#', 'Blueprint'],
       video: 'https://www.youtube.com/embed/9c8-w5UJ7_I',
@@ -35,6 +49,13 @@ window.App = window.App || {};
       title: 'CrackJack – AR 2D Platformer',
       date: '2021-2022',
       description: 'Unity-based 2D platformer with AR blackjack elements. Emphasized team collaboration, cross-tool integration, and AR interactivity.',
+      impact: {
+        role: 'AR gameplay integration + cross-tool pipeline',
+        outcome: 'AR platformer blending blackjack mechanics',
+        metrics: 'End-to-end build across Unity and animation tools',
+        scope: 'Team collaboration with shared pipeline',
+        validation: 'Video + project files'
+      },
       tools: ['Vuforia', 'Visual Studio', 'Unity', 'HTML5', 'Adobe Animate', 'After Effects', 'Illustrator'],
       languages: ['C#', 'C++'],
       video: 'https://www.youtube.com/embed/bzkznXykwyQ',
@@ -46,6 +67,13 @@ window.App = window.App || {};
       title: 'Guru Donuts Accessibility Companion – AR',
       date: '2023-2024',
       description: 'Accessibility-focused app helping non-verbal autistic users navigate coffee shops. Features visual guides and usability testing.',
+      impact: {
+        role: 'Accessibility flow design + AR UI implementation',
+        outcome: 'Guided, non-verbal friendly navigation aid',
+        metrics: 'Usability testing focused on accessibility needs',
+        scope: 'Small team prototype with UX emphasis',
+        validation: 'Video + GitHub repo'
+      },
       tools: ['Swift', 'Oculus'],
       languages: ['Swift'],
       video: 'https://www.youtube.com/embed/tn2nnDER-As',
@@ -59,6 +87,13 @@ window.App = window.App || {};
       title: 'Interactive Comic – The Emptiness of an Atom',
       date: '2022-2023',
       description: 'Immersive storytelling experience in Unity integrating animations and art. Led storyboarding and task assignments.',
+      impact: {
+        role: 'Storyboarding lead + Unity integration',
+        outcome: 'Interactive narrative experience',
+        metrics: 'Multi-scene build with animated sequences',
+        scope: 'Team project with task leadership',
+        validation: 'Video + project files'
+      },
       tools: ['Visual Studio', 'Unity', 'HTML5', 'Adobe Animate', 'Illustrator'],
       languages: ['C++', 'C#'],
       video: 'https://www.youtube.com/embed/S5P4gIgzos8',
@@ -70,6 +105,13 @@ window.App = window.App || {};
       title: 'Olympics Animation (Rotoscoping)',
       date: '2022-2023',
       description: 'Promotional animation for the Olympics. Learned advanced rotoscoping techniques.',
+      impact: {
+        role: 'Rotoscoping + animation production',
+        outcome: 'Promotional animation short',
+        metrics: 'Full pipeline from footage to final cut',
+        scope: 'Solo production',
+        validation: 'Video'
+      },
       tools: ['Adobe Animate'],
       video: 'https://www.youtube.com/embed/fu8AUTe-0m0'
     },
@@ -79,6 +121,13 @@ window.App = window.App || {};
       title: 'The Only Way to Slide in Baseball',
       date: '2021-2022',
       description: 'First animation project; foundational to skills in digital art and animation.',
+      impact: {
+        role: 'Animation + digital art production',
+        outcome: 'Foundational short animation',
+        metrics: 'First complete animation workflow',
+        scope: 'Solo production',
+        validation: 'Video'
+      },
       tools: ['Adobe Animate'],
       video: 'https://www.youtube.com/embed/g8DkEvoixZE'
     },
@@ -88,6 +137,13 @@ window.App = window.App || {};
       title: 'Art Gallery Phone App (Adobe XD)',
       date: '2023-2024',
       description: 'Mobile app showcasing illustrations, designed in Adobe XD with interactive design focus.',
+      impact: {
+        role: 'UI design + interactive prototyping',
+        outcome: 'Mobile gallery flow for illustrations',
+        metrics: 'Multi-screen interactive prototype',
+        scope: 'Solo design project',
+        validation: 'Video + wireframe files'
+      },
       tools: ['Adobe Illustrator', 'Animate', 'XD'],
       video: 'https://www.youtube.com/embed/G_Ef7nvkwZI',
       wireframe: 'https://drive.google.com/drive/folders/1ED3l4Ms0n5ktCLh6F0fSz337SpJxLyF_?usp=share_link'
@@ -100,6 +156,13 @@ window.App = window.App || {};
       title: 'LineupWars!',
       date: '2025-2026',
       description: 'Multi-variant fantasy drafting website allowing dynamic player, character, or squad drafting under rules. Includes interactive forms and category rotation.',
+      impact: {
+        role: 'Product design + full-stack web development',
+        outcome: 'Live fantasy drafting platform',
+        metrics: 'Multiple game variants and rule sets',
+        scope: 'Solo dev with multi-repo architecture',
+        validation: 'Live site + GitHub repos'
+      },
       tools: ['VS Code', 'GitHub', 'HTML5', 'Bootstrap'],
       languages: ['HTML', 'CSS', 'JavaScript', 'SQL'],
       video: '',
@@ -118,6 +181,13 @@ window.App = window.App || {};
       title: 'PickTheStick',
       date: '2023-2025',
       description: 'Users select one player per game for scoring. Real-time points calculation and season leaderboard.',
+      impact: {
+        role: 'Web app development + scoring logic',
+        outcome: 'Live pick-em game with leaderboard',
+        metrics: 'Real-time points + season tracking',
+        scope: 'Solo/lead dev',
+        validation: 'Live site + GitHub repo'
+      },
       tools: ['VS Code', 'GitHub', 'HTML5', 'Bootstrap'],
       languages: ['HTML', 'CSS', 'JavaScript', 'SQL'],
       video: '',
@@ -130,6 +200,13 @@ window.App = window.App || {};
       title: 'Baseball Lineup Creator',
       date: '2021-2023',
       description: 'Fantasy Pokémon baseball lineup generator with real-time backend interaction.',
+      impact: {
+        role: 'Web UI + backend integration',
+        outcome: 'Fantasy lineup generator',
+        metrics: 'Dynamic roster generation with persistence',
+        scope: 'Solo dev',
+        validation: 'Video + web file'
+      },
       tools: ['VS Code', 'GitHub', 'HTML5', 'Bootstrap'],
       languages: ['HTML', 'CSS', 'JavaScript', 'SQL'],
       video: 'https://www.youtube.com/embed/lXgOXg24npk',
@@ -141,6 +218,13 @@ window.App = window.App || {};
       title: 'TalkingVids Website',
       date: '2024-2026',
       description: 'Multimedia promotional site using Squarespace demonstrating responsive layout and interactive media.',
+      impact: {
+        role: 'Site build + multimedia layout',
+        outcome: 'Promotional marketing site',
+        metrics: 'Responsive layout with media embeds',
+        scope: 'Client-style delivery',
+        validation: 'Live site + video'
+      },
       tools: ['Adobe Creative Cloud', 'Squarespace'],
       video: 'https://www.youtube.com/embed/ehjbj8V3Rd4',
       live: 'http://talkingvids.com/'
@@ -151,6 +235,13 @@ window.App = window.App || {};
       title: 'SoundingGreat Website',
       date: '2022-2023',
       description: 'Originally built in Wix, migrated to Squarespace, demonstrating UI adaptability and full-stack deployment considerations.',
+      impact: {
+        role: 'Site migration + UI adaptation',
+        outcome: 'Brand site ported to new platform',
+        metrics: 'Preserved content while improving UX',
+        scope: 'Solo migration',
+        validation: 'Live site + video'
+      },
       tools: ['Adobe Creative Cloud', 'Wix', 'Squarespace'],
       video: 'https://www.youtube.com/embed/dLtcX_ihL9Y',
       live: 'http://soundinggreat.com/'
@@ -163,6 +254,13 @@ window.App = window.App || {};
       title: 'VR Baseball – Models & Textures',
       date: '2023-2025',
       description: '3D models, textures, and animations for VR game "A Devil’s Revenge". Demonstrates 3D modeling and Unity integration.',
+      impact: {
+        role: '3D modeling + texturing',
+        outcome: 'Game-ready asset pack for VR',
+        metrics: 'Multiple models with PBR textures',
+        scope: 'Solo asset pipeline',
+        validation: 'Video'
+      },
       tools: ['Maya', 'Substance Painter', 'Unity'],
       video: 'https://www.youtube.com/embed/yRQLlCv_mDs'
     },
@@ -172,6 +270,13 @@ window.App = window.App || {};
       title: 'Audio Engineering Samples',
       date: '2019-2026',
       description: 'Collection of composed and engineered audio tracks including game themes and conceptual music.',
+      impact: {
+        role: 'Composition + audio engineering',
+        outcome: 'Curated audio portfolio',
+        metrics: 'Three representative tracks + full directory',
+        scope: 'Solo production',
+        validation: 'In-site players + audio folder'
+      },
       tools: ['MuseScore3 & 4', 'ChucK', 'Unity', 'Audition'],
       audio: [
         { title: 'Conceptual Music', src: 'audio/ConceptualMusic.mp3' },
@@ -192,6 +297,44 @@ window.App = window.App || {};
     span.classList.add('tag');
     span.textContent = name;
     return span;
+  }
+
+  function createImpactSnapshot(impact, compact = false) {
+    if (!impact) return null;
+    const wrap = document.createElement('details');
+    wrap.classList.add('impact-snapshot');
+    if (compact) wrap.classList.add('compact');
+
+    const title = document.createElement('summary');
+    title.classList.add('impact-summary');
+    title.textContent = 'Impact Snapshot';
+    wrap.appendChild(title);
+
+    const list = document.createElement('ul');
+    list.classList.add('impact-list');
+
+    const items = [
+      { label: 'Role', value: impact.role },
+      { label: 'Outcome', value: impact.outcome },
+      { label: 'Metrics', value: impact.metrics }
+    ];
+
+    items.forEach(item => {
+      if (!item.value) return;
+      const li = document.createElement('li');
+      const label = document.createElement('span');
+      label.classList.add('impact-label');
+      label.textContent = `${item.label}:`;
+      const value = document.createElement('span');
+      value.classList.add('impact-value');
+      value.textContent = item.value;
+      li.appendChild(label);
+      li.appendChild(value);
+      list.appendChild(li);
+    });
+
+    wrap.appendChild(list);
+    return wrap;
   }
 
   // map of icons for each project (could easily be extended)
@@ -404,6 +547,11 @@ window.App = window.App || {};
         infoDiv.appendChild(dateEl);
       }
 
+      if (p.impact) {
+        const impactBlock = createImpactSnapshot(p.impact, true);
+        if (impactBlock) infoDiv.appendChild(impactBlock);
+      }
+
       // Tools
       if (p.tools) {
         const toolsDiv = document.createElement('div');
@@ -529,7 +677,7 @@ window.App = window.App || {};
       card.appendChild(infoDiv);
       // clicking on card (but not on buttons/links) also opens modal info
       card.addEventListener('click', (e) => {
-        if (!e.target.closest('.project-buttons') && !e.target.closest('a')) {
+        if (!e.target.closest('.project-buttons') && !e.target.closest('a') && !e.target.closest('.impact-snapshot')) {
           infoBtn.click();
         }
       });
@@ -556,6 +704,41 @@ window.App = window.App || {};
     }
 
     if (window.App.attachModalButtons) window.App.attachModalButtons();
+  }
+
+  function applyTagVisibility(show) {
+    const projectsSection = document.getElementById('projects');
+    const toggle = document.getElementById('tag-visibility-toggle');
+    if (!projectsSection || !toggle) return;
+
+    projectsSection.classList.toggle('hide-tags', !show);
+    toggle.classList.toggle('is-on', show);
+    toggle.setAttribute('aria-pressed', show ? 'true' : 'false');
+    toggle.setAttribute(
+      'aria-label',
+      show ? 'Hide tools and languages on project cards' : 'Show tools and languages on project cards'
+    );
+
+    const state = toggle.querySelector('.tag-toggle__state');
+    if (state) state.textContent = show ? 'On' : 'Off';
+
+    localStorage.setItem('showProjectTags', String(show));
+  }
+
+  function initTagToggle() {
+    const toggle = document.getElementById('tag-visibility-toggle');
+    if (!toggle) return;
+
+    const stored = localStorage.getItem('showProjectTags');
+    const initial = stored === null ? true : stored === 'true';
+    let isShowing = initial;
+
+    applyTagVisibility(isShowing);
+
+    toggle.addEventListener('click', () => {
+      isShowing = !isShowing;
+      applyTagVisibility(isShowing);
+    });
   }
 
   /* =========================
@@ -587,10 +770,12 @@ window.App = window.App || {};
 
   function initProjects() {
     bindFilterButtons();
+    initTagToggle();
     renderProjects('all');
   }
 
   window.App.projects = projects;
+  window.App.createImpactSnapshot = createImpactSnapshot;
   window.App.renderProjects = renderProjects;
   window.App.initProjects = initProjects;
 })();

@@ -151,6 +151,18 @@ window.App = window.App || {};
     sections.forEach(s => sectionObserver2.observe(s));
   }
 
+  function initHeroDetailsToggle() {
+    const heroText = document.querySelector('.hero-text');
+    const toggleBtn = document.querySelector('.hero-details-toggle');
+    if (!heroText || !toggleBtn) return;
+
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = heroText.classList.toggle('hero-details-open');
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+      toggleBtn.setAttribute('aria-label', isOpen ? 'Hide hero details' : 'Show hero details');
+    });
+  }
+
   // apply observer to relevant elements once DOM is ready
   window.addEventListener('DOMContentLoaded', () => {
     // theme initialization (must happen before any elements relying on variables)
@@ -182,6 +194,7 @@ window.App = window.App || {};
 
     initBackToTop();
     initSectionHighlight();
+    initHeroDetailsToggle();
 
     // modals before projects so attachModalButtons can bind immediately
     if (window.App.initModals) window.App.initModals();

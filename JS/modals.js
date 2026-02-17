@@ -167,6 +167,11 @@ window.App = window.App || {};
         desc.textContent = project.description;
         modalBody.appendChild(desc);
 
+        if (project.impact && window.App.createImpactSnapshot) {
+          const impactBlock = window.App.createImpactSnapshot(project.impact, false);
+          if (impactBlock) modalBody.appendChild(impactBlock);
+        }
+
         // TAGS
         if (project.tools) {
           const toolsDiv = document.createElement('div');

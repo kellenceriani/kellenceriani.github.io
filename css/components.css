@@ -92,16 +92,93 @@
 
 .theme-toggle {
   background: none;
-  border: none;
-  font-size: 1.5rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  font-size: 1.2rem;
   cursor: pointer;
   color: var(--color-text);
-  padding: 0.3rem;
-  transition: color var(--transition-speed) ease;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
 .theme-toggle:hover {
   color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.dark .theme-toggle {
+  border-color: rgba(255,255,255,0.2);
+}
+
+
+/* =========================
+   TAG VISIBILITY TOGGLE
+========================= */
+
+.tag-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-marker-border);
+  background: var(--color-alt-surface);
+  color: var(--color-text);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.tag-toggle:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-primary);
+}
+
+.tag-toggle__switch {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background: #bdbdbd;
+  border-radius: 999px;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+.tag-toggle__switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease;
+}
+
+.tag-toggle__state {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.tag-toggle.is-on .tag-toggle__switch {
+  background: var(--color-primary);
+}
+
+.tag-toggle.is-on .tag-toggle__switch::after {
+  transform: translateX(16px);
+}
+
+.dark .tag-toggle {
+  border-color: rgba(255,255,255,0.3);
 }
 
 
@@ -123,10 +200,31 @@
   color: var(--color-text);
   font-weight: 500;
   transition: color 0.3s ease;
+  position: relative;
+  padding: 0.1rem 0;
 }
 
 .nav-links li a:hover {
   color: var(--color-primary);
+}
+
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+  opacity: 0.8;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  transform: scaleX(1);
 }
 
 
@@ -139,6 +237,9 @@
   flex-direction: column;
   cursor: pointer;
   gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .hamburger span {
@@ -239,6 +340,85 @@
 
 .modal .tag {
   border: none;
+}
+
+
+/* =========================
+   IMPACT SNAPSHOT
+========================= */
+
+.impact-snapshot {
+  margin: 0.75rem 0 0.5rem 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  background: var(--color-alt-surface);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.dark .impact-snapshot {
+  border-color: rgba(255,255,255,0.08);
+}
+
+.impact-snapshot.compact {
+  padding: 0.6rem 0.8rem;
+}
+
+.impact-summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.impact-summary::marker,
+.impact-summary::-webkit-details-marker {
+  display: none;
+}
+
+.impact-summary::after {
+  content: "+";
+  font-weight: 700;
+  color: var(--color-secondary-text);
+}
+
+.impact-snapshot[open] .impact-summary::after {
+  content: "-";
+}
+
+.impact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.impact-list li {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 0.5rem;
+  align-items: start;
+  font-size: 0.9rem;
+}
+
+.impact-label {
+  font-weight: 700;
+  color: var(--color-secondary-text);
+}
+
+.impact-value {
+  color: var(--color-text);
+}
+
+.impact-snapshot.compact .impact-list li {
+  grid-template-columns: 76px 1fr;
+  font-size: 0.85rem;
 }
 
 
