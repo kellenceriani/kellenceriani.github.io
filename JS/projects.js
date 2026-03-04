@@ -190,6 +190,7 @@ window.App = window.App || {};
       },
       tools: ['VS Code', 'GitHub', 'Node.js', 'Express', 'Socket.IO', 'Render'],
       languages: ['JavaScript', 'HTML', 'CSS'],
+      video: 'https://www.youtube.com/embed/VX0fcZ3a4tY?si=BJedJQEAAYMPy1QT',
       thumbnail: 'imgs/lobbyWars.png',
       live: 'https://lobby.lineupwars.com',
       github: 'https://github.com/kellenceriani/lobby'
