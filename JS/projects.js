@@ -135,7 +135,7 @@ window.App = window.App || {};
       id: 'art-gallery',
       category: 'animations',
       title: 'Art Gallery Phone App (Adobe XD)',
-      date: '2023-2024',
+      date: '2022-2023',
       description: 'Mobile app showcasing illustrations, designed in Adobe XD with interactive design focus.',
       impact: {
         role: 'UI design + interactive prototyping',
@@ -174,6 +174,25 @@ window.App = window.App || {};
         { label: 'Heist', url: 'https://github.com/kellenceriani/Heist' },
         { label: 'UniverseBattle', url: 'https://github.com/kellenceriani/UniverseBattle' }
       ]
+    },
+    {
+      id: 'lobbywars',
+      category: 'web',
+      title: 'LobbyWARS',
+      date: '2026',
+      description: 'Realtime multiplayer experience and latest addition in the lineupwars ecosystem: Players create rooms, draft teams across rounds, apply plot twists, and resolve winners with a hybrid vote + contextual evaluation system. Includes startup preflight warmups, adaptive voice/narration routing, category voting flow, and production-minded socket contracts with rate limiting and validation. This is a live project in active development, with plans for iterative feature expansion and public release later in 2026.',
+      impact: {
+        role: 'Product architecture, realtime gameplay systems, and full-stack implementation',
+        outcome: 'Deployed multiplayer lobby game with deterministic round flow and synced client/server state',
+        metrics: 'Socket event contract + category vote system + round/final evaluation pipelines + deployment migration planning docs',
+        scope: 'Solo project spanning gameplay design, frontend SPA, backend services, and operational runbooks',
+        validation: 'Live deployment + public repository + architecture/runbook documentation'
+      },
+      tools: ['VS Code', 'GitHub', 'Node.js', 'Express', 'Socket.IO', 'Render'],
+      languages: ['JavaScript', 'HTML', 'CSS'],
+      thumbnail: 'imgs/lobbyWars.png',
+      live: 'https://lobby.lineupwars.com',
+      github: 'https://github.com/kellenceriani/lobby'
     },
     {
       id: 'pickthestick',
@@ -216,7 +235,7 @@ window.App = window.App || {};
       id: 'talkingvids',
       category: 'web',
       title: 'TalkingVids Website',
-      date: '2024-2026',
+      date: '2024-2025',
       description: 'Multimedia promotional site using Squarespace demonstrating responsive layout and interactive media.',
       impact: {
         role: 'Site build + multimedia layout',
@@ -348,6 +367,7 @@ window.App = window.App || {};
     'baseball-slide': '⚾',
     'art-gallery': '🖼️',
     'lineupwars': '📝',
+    'lobbywars': '🏟️',
     'pickthestick': '🎯',
     'baseball-lineup': '📊',
     'talkingvids': '🎥',
@@ -362,7 +382,7 @@ window.App = window.App || {};
 
     projectGrid.innerHTML = '';
 
-    const featuredIds = ['vr-baseball', 'lineupwars', 'olympics-animation', 'balls-unreal', 'interactive-comic'];
+    const featuredIds = ['vr-baseball', 'lineupwars', 'lobbywars', 'olympics-animation', 'balls-unreal', 'interactive-comic'];
 
     const list = projects.filter(p => {
       if (filter === 'all' && !showAll) return featuredIds.includes(p.id);
@@ -458,9 +478,23 @@ window.App = window.App || {};
           mediaDiv.appendChild(slideshow);
         } else {
           const img = document.createElement('img');
-          img.src = `imgs/${p.id}.png`;
+          img.src = p.thumbnail || `imgs/${p.id}.png`;
           img.alt = p.title;
           img.loading = 'lazy';
+          img.addEventListener('error', () => {
+            const fallback = document.createElement('div');
+            fallback.classList.add('audio-thumb');
+            fallback.style.display = 'flex';
+            fallback.style.alignItems = 'center';
+            fallback.style.justifyContent = 'center';
+            fallback.style.minHeight = '180px';
+            fallback.style.fontWeight = '700';
+            fallback.style.letterSpacing = '0.02em';
+            fallback.textContent = p.title;
+            if (img.parentNode) {
+              img.parentNode.replaceChild(fallback, img);
+            }
+          }, { once: true });
           mediaDiv.appendChild(img);
         }
       } else if (p.audio) {
