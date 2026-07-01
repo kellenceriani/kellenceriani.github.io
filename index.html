@@ -46,22 +46,34 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Apply theme early to prevent FOUC -->
-  <script>
-    (function () {
-      try {
-        const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (stored === 'dark' || (!stored && prefersDark)) document.documentElement.classList.add('dark');
+<!-- Apply saved theme early to prevent FOUC -->
+<script>
+(function () {
+  try {
+    const stored = localStorage.getItem("theme");
 
-        const meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) {
-          const bg = getComputedStyle(document.documentElement).getPropertyValue('--color-bg').trim();
-          if (bg) meta.setAttribute('content', bg);
-        }
-      } catch (e) { }
-    })();
-  </script>
+    // Ignore browser appearance completely.
+    // Default is always light unless the user explicitly chose dark.
+    if (stored === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Update browser UI color
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      const bg = getComputedStyle(document.documentElement)
+        .getPropertyValue("--color-bg")
+        .trim();
+
+      if (bg) {
+        meta.setAttribute("content", bg);
+      }
+    }
+  } catch (e) {}
+})();
+</script>
 
   <title>Kellen Ceriani – Portfolio</title>
 </head>

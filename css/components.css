@@ -712,12 +712,14 @@
   transform: translateX(-50%) scale(1.08) rotate(var(--rotate-angle,0deg));
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .custom-scrollbar .track {
     box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
   }
+} */
+html.dark .custom-scrollbar .track {
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
 }
-
 
 /* =========================
    SLIDESHOW CONTROLS
