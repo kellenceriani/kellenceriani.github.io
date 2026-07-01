@@ -36,7 +36,8 @@
 /* Secondary */
 .btn-secondary {
   background-color: var(--color-secondary);
-  color: var(--color-text);
+  color: #ffffff;
+  /* color: var(--color-text); */
 }
 
 .btn-secondary:hover {

@@ -192,7 +192,7 @@ window.App = window.App || {};
       languages: ['JavaScript', 'HTML', 'CSS'],
       video: 'https://www.youtube.com/embed/VX0fcZ3a4tY?si=BJedJQEAAYMPy1QT',
       thumbnail: 'imgs/lobbyWars.png',
-      live: 'https://lobby.lineupwars.com',
+      liveOFF: 'https://lobby.lineupwars.com',
       github: 'https://github.com/kellenceriani/lobby'
     },
     {
@@ -431,7 +431,7 @@ window.App = window.App || {};
         iframe.allowFullscreen = true;
         iframe.loading = 'lazy';
         mediaDiv.appendChild(iframe);
-      } else if (p.live) {
+      } else if (p.live || p.liveOFF) {
         // special-case: LineupWars uses a 6-image slideshow instead of a single thumbnail
         if (p.id === 'lineupwars') {
           const slideshow = document.createElement('div');
@@ -690,6 +690,15 @@ window.App = window.App || {};
         liveLink.rel = 'noopener noreferrer';
         liveLink.classList.add('btn-primary');
         liveLink.textContent = 'Live Demo';
+        buttonsDiv.appendChild(liveLink);
+      }
+      if (p.liveOFF) {
+        const liveLink = document.createElement('a');
+        liveLink.href = p.liveOFF;
+        liveLink.target = '_blank';
+        liveLink.rel = 'noopener noreferrer';
+        liveLink.classList.add('btn-primary');
+        liveLink.textContent = 'Live (currently offline)';
         buttonsDiv.appendChild(liveLink);
       }
 
