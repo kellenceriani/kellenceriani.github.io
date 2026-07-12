@@ -233,11 +233,39 @@ window.App = window.App || {};
       webfile: 'https://drive.google.com/file/d/1xHW-VP5aigOckZHe_LFpDQ_bCZUMnamj/view?usp=sharing'
     },
     {
+        id: 'baseball-web-narrative',
+        category: 'web',
+        title: 'Baseball Web Narrative',
+        date: '2020-2021',
+        description: 'An interactive educational web narrative exploring the history of baseball through storytelling, animation, and interactive D3.js visualizations. The project combines historical research with engaging web design to create a self-contained multimedia experience.',
+        impact: {
+          role: 'Web development, UI/UX design, interactive storytelling, and data visualization',
+          outcome: 'Built a complete educational web experience using interactive navigation and visualizations',
+          metrics: 'Multiple interconnected HTML pages with custom JavaScript and D3 visualizations',
+          scope: 'Solo academic project',
+          validation: 'Downloadable project archive'
+        },
+        tools: [
+          'Visual Studio 2019',
+          'HTML5',
+          'CSS3',
+          'JavaScript',
+          'D3.js'
+        ],
+        languages: [
+          'HTML',
+          'CSS',
+          'JavaScript'
+        ],
+        video: 'imgs/BWN.mp4',
+        webfile: 'https://drive.google.com/file/d/19Et99KBaIL1JSAPPH8gTXI3VneLlgD0O/view?usp=drive_link'
+    },
+    {
       id: 'talkingvids',
       category: 'web',
       title: 'TalkingVids Website',
       date: '2024-2025',
-      description: 'Multimedia promotional site using Squarespace demonstrating responsive layout and interactive media.',
+      description: 'Multimedia promotional site using Squarespace demonstrating responsive layout and interactive media. TalkingVids is unfortunately out of business, with the live websites offline.',
       impact: {
         role: 'Site build + multimedia layout',
         outcome: 'Promotional marketing site',
@@ -247,14 +275,14 @@ window.App = window.App || {};
       },
       tools: ['Adobe Creative Cloud', 'Squarespace'],
       video: 'https://www.youtube.com/embed/ehjbj8V3Rd4',
-      live: 'http://talkingvids.com/'
+      // live: 'http://talkingvids.com/'
     },
     {
       id: 'soundinggreat',
       category: 'web',
       title: 'SoundingGreat Website',
       date: '2022-2023',
-      description: 'Originally built in Wix, migrated to Squarespace, demonstrating UI adaptability and full-stack deployment considerations.',
+      description: 'Originally built in Wix, migrated to Squarespace, demonstrating UI adaptability and full-stack deployment considerations. TalkingVids (SoundingGreat) is unfortunately out of business, with the live websites offline.',
       impact: {
         role: 'Site migration + UI adaptation',
         outcome: 'Brand site ported to new platform',
@@ -264,7 +292,7 @@ window.App = window.App || {};
       },
       tools: ['Adobe Creative Cloud', 'Wix', 'Squarespace'],
       video: 'https://www.youtube.com/embed/dLtcX_ihL9Y',
-      live: 'http://soundinggreat.com/'
+      // live: 'http://soundinggreat.com/'
     },
 
     // Miscellaneous
@@ -423,7 +451,7 @@ window.App = window.App || {};
       // Media
       const mediaDiv = document.createElement('div');
       mediaDiv.classList.add('project-media');
-
+      
       if (p.video) {
         const iframe = document.createElement('iframe');
         iframe.src = p.video;

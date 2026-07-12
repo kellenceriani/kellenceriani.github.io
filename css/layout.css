@@ -536,8 +536,10 @@ footer .footer-nav {
   list-style: none;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;      /* <-- Important */
   gap: 1rem;
   margin-top: 1rem;
+  padding: 0;
 }
 
 footer .footer-nav li a {
