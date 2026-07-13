@@ -332,7 +332,31 @@ window.App = window.App || {};
         { title: 'Random Game Music', src: 'audio/RandomGameMusicWithAbruptTransitions.mp3' }
       ],
       folderLink: 'https://drive.google.com/drive/folders/1oFUif12f2AWLHorq8yBRShPelbtVtV0_?usp=sharing'
-    }
+    },
+    {
+      id: 'social-media-jobs',
+      category: 'misc',
+      title: 'Short-Form Video Portfolio | Road Warrior Investors',
+      date: '2025-2026',
+      description: 'A collection of 15–20 professionally edited short-form videos (1:30+ each) created for Road Warrior Investors. These engaging, high-retention edits were designed to educate, inform, and keep viewers engaged while showcasing clean pacing, dynamic visuals, polished storytelling, and social media optimization.',
+      impact: {
+        role: 'Video editor, motion graphics, pacing, and social media content production',
+        outcome: 'Produced a portfolio of engaging educational short-form videos for online audiences',
+        metrics: '15–20 professionally edited videos, each over 1:30 in length',
+        scope: 'Client work focused on audience retention and content quality',
+        validation: 'YouTube playlist'
+      },
+      tools: [
+        'Adobe Premiere Pro',
+        'Adobe After Effects',
+        'Adobe Audition',
+        'Adobe Photoshop',
+        'CapCut',
+        'Canva',
+        'InShot'
+      ],
+      video: 'https://www.youtube.com/embed/videoseries?list=PLT_C3umNb-GY'
+  }
   ];
 
   /* =========================
