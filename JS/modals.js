@@ -224,6 +224,15 @@ window.App = window.App || {};
           btn.textContent = 'GitHub';
           btnWrapper.appendChild(btn);
         }
+        if (project.playlist) {
+          const btn = document.createElement('a');
+          btn.href = project.playlist;
+          btn.target = '_blank';
+          btn.rel = 'noopener noreferrer';
+          btn.classList.add('btn-primary');
+          btn.textContent = 'Playlist';
+          btnWrapper.appendChild(btn);
+        }
         if (project.slides) {
           const btn = document.createElement('a');
           btn.href = project.slides;
@@ -249,6 +258,15 @@ window.App = window.App || {};
           btn.rel = 'noopener noreferrer';
           btn.classList.add('btn-primary');
           btn.textContent = 'Full Audio Directory';
+          btnWrapper.appendChild(btn);
+        }
+        if (project.webfile) {
+          const btn = document.createElement('a');
+          btn.href = project.webfile;
+          btn.target = '_blank';
+          btn.rel = 'noopener noreferrer';
+          btn.classList.add('btn-primary');
+          btn.textContent = 'Web File';
           btnWrapper.appendChild(btn);
         }
 

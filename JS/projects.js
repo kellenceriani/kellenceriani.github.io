@@ -355,7 +355,8 @@ window.App = window.App || {};
         'Canva',
         'InShot'
       ],
-      video: 'https://www.youtube.com/embed/videoseries?list=PLT_C3umNb-GY'
+      video: 'https://www.youtube.com/embed/vXWPYY-bRiw',
+      playlist: 'https://youtube.com/playlist?list=PLT_C3umNb-GY&si=q41yEsmpUV8Dd3c-'
   }
   ];
 
@@ -714,7 +715,15 @@ window.App = window.App || {};
         wfLink.textContent = 'Wireframe';
         buttonsDiv.appendChild(wfLink);
       }
-
+      if (p.playlist) {
+        const playlistLink = document.createElement('a');
+        playlistLink.href = p.playlist;
+        playlistLink.target = '_blank';
+        playlistLink.rel = 'noopener noreferrer';
+        playlistLink.classList.add('btn-primary');
+        playlistLink.textContent = 'Playlist';
+        buttonsDiv.appendChild(playlistLink);
+      }
       if (p.projectFiles) {
         const pfLink = document.createElement('a');
         pfLink.href = p.projectFiles;
