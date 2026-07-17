@@ -192,7 +192,7 @@ window.App = window.App || {};
       languages: ['JavaScript', 'HTML', 'CSS'],
       video: 'https://www.youtube.com/embed/VX0fcZ3a4tY?si=BJedJQEAAYMPy1QT',
       thumbnail: 'imgs/lobbyWars.png',
-      liveOFF: 'https://lobby.lineupwars.com',
+      live: 'https://lobby.lineupwars.com',
       github: 'https://github.com/kellenceriani/lobby'
     },
     {
