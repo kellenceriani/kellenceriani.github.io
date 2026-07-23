@@ -618,6 +618,20 @@
 @media (max-width: 600px) {
   .custom-scrollbar {
     width: 18px;
+    right: max(0px, env(safe-area-inset-right));
+  }
+
+  .custom-scrollbar .track {
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .custom-scrollbar .marker {
+    width: 22px;
+    height: 22px;
+    border-width: 1.5px;
+    box-shadow: 0 2px 7px rgba(0,0,0,0.16);
   }
 
   .custom-scrollbar .thumb {
@@ -655,6 +669,8 @@
   color: var(--color-thumb-color);
   pointer-events: none;
   z-index: 1;
+  transition: top 220ms cubic-bezier(.2,.8,.2,1);
+  will-change: top;
 }
 
 .custom-scrollbar .marker span {

@@ -189,9 +189,6 @@ window.App = window.App || {};
       if (hero) hero.classList.add('loaded');
     }, 100);
 
-    // initialize the custom baseball scrollbar overlay
-    if (window.App.initCustomScrollbar) window.App.initCustomScrollbar();
-
     initBackToTop();
     initSectionHighlight();
     initHeroDetailsToggle();
@@ -199,5 +196,8 @@ window.App = window.App || {};
     // modals before projects so attachModalButtons can bind immediately
     if (window.App.initModals) window.App.initModals();
     if (window.App.initProjects) window.App.initProjects();
+
+    // initialize after dynamic project content so marker positions start stable
+    if (window.App.initCustomScrollbar) window.App.initCustomScrollbar();
   });
 })();

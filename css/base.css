@@ -85,15 +85,18 @@ body {
     color var(--transition-speed) ease;
 }
 
-/* Prevent scrollbars from flashing before JS initializes */
-.js-enabled html {
+/* Prevent native scrollbars from competing with the custom overlay */
+.js-enabled,
+.js-enabled body {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
+.js-enabled::-webkit-scrollbar,
 .js-enabled body::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  width: 0 !important;
+  height: 0 !important;
+  display: none;
 }
 
 /* =========================
