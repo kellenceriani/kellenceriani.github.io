@@ -605,13 +605,27 @@
   height: 100vh;
   pointer-events: none;
   z-index: 2000;
-  display: none;
+  display: block;
+  opacity: 1;
 }
 
-@media (hover: hover) and (pointer: fine) and (min-width: 600px) {
+@media (hover: hover) and (pointer: fine) {
   .custom-scrollbar {
-    display: block;
     pointer-events: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .custom-scrollbar {
+    width: 18px;
+  }
+
+  .custom-scrollbar .thumb {
+    width: 32px;
+  }
+
+  .custom-scrollbar .thumb::before {
+    font-size: 1.3rem;
   }
 }
 
